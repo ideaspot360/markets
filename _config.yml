@@ -29,7 +29,7 @@ header_pages:
   - about.md
 
 # Ads & Analytics (Configurable)
-google_analytics: "" # e.g. G-XXXXXXXXXX
+google_analytics: "G-SNWRVFJ06Y" # e.g. G-XXXXXXXXXX
 google_adsense_client: "" # e.g. ca-pub-XXXXXXXXXXXXXXXX
 
 # Plugins
