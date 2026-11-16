@@ -28,12 +28,36 @@ All macro time-series diagrams, Fed dot plots, and financial statement matrices 
 
 ---
 
-## 📚 Core Research Categories
+## 📚 Core Research Categories (The 4 Canonical Pillars)
 
-1. **`Macro Intelligence`**: Fed Net Liquidity, Treasury General Account (TGA), Reverse Repo Facility (RRP), interest rate expectations, and global central bank balance sheets.
-2. **`US Equity Deep-Dive`**: Megacap hyperscalers, structural Free Cash Flow (FCF) yields, AI infrastructure CapEx returns, and multiple compression analysis.
-3. **`Earnings Post-Mortem`**: Quarterly earnings decompilation, consensus divergence, guidance quality, and margin trajectory.
-4. **`Systematic & Factor Frameworks`**: Equity Risk Premium (ERP), cross-asset volatility (VIX, MOVE), and quantitative factor rotation models.
+Every publication must map **1:1 exclusively** to exactly one of the 4 research pillars (or Platform Manifesto):
+
+1. **`Macro Intelligence`** (`/category/macro/`): Fed Net Liquidity, Treasury General Account (TGA), Reverse Repo Facility (RRP), sovereign yield curves, and global central bank balance sheets.
+2. **`US Systematic Equity`** (`/category/equities/`): Megacap hyperscalers, structural Free Cash Flow (FCF) yields, AI infrastructure CapEx returns, and valuation multiple compression analysis.
+3. **`Options & Income`** (`/category/options-income/`): Covered call ETFs (JEPI, JEPQ, 0DTE), volatility term structures, option writing yield mechanics, and downside asymmetric risk models.
+4. **`Quantitative Frameworks`** (`/category/quant/`): Quantitative asset allocation, factor rotation, PineScript execution algorithms, and systematic risk management.
+
+*(Note: `Platform Manifesto` is reserved exclusively for platform announcements and is strictly isolated from research pillars.)*
+
+---
+
+## 🛡️ Automated Integrity Guard & Pre-Commit Enforcement
+
+To prevent category collisions, tag pollution, missing assets, or frontmatter schema errors, an automated 3-stage validation guard is strictly enforced:
+
+### Install Local Git Pre-Commit Hook
+```bash
+python scripts/install_git_hook.py
+# or
+python scripts/validate_global_blog.py --install-hook
+```
+Once installed, `git commit` automatically runs the validator and aborts if any violation is detected.
+
+### Manual Verification
+```bash
+python scripts/validate_global_blog.py
+pytest scripts/test_validate_global_blog.py -v
+```
 
 ---
 
@@ -56,10 +80,14 @@ layout: post
 # Publication Body...
 ```
 
-### Step 2: Commit & Push
+### Step 2: Validate & Commit
 ```bash
+# Verify integrity (0 violations required)
+python scripts/validate_global_blog.py
+
+# Commit and Push
 git add .
 git commit -m "feat(markets): publish new report title"
 git push origin main
 ```
-The publication goes live globally at `https://markets.ideaspot360.com` immediately upon push.
+The publication is re-validated via GitHub Actions CI and goes live globally at `https://markets.ideaspot360.com` immediately upon push.

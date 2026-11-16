@@ -115,10 +115,12 @@ def find_blog_root(start_path: Optional[Path] = None) -> Path:
 def extract_frontmatter(content: str) -> Tuple[Optional[Dict[str, Any]], Optional[str]]:
     """
     Extracts and parses YAML frontmatter from markdown file text.
+    Handles UTF-8 BOM if present.
     Returns (data, error_message).
     """
+    cleaned_content = content.lstrip("\ufeff")
     pattern = r"^---\r?\n(.*?)\r?\n---\r?\n"
-    match = re.match(pattern, content, re.DOTALL)
+    match = re.match(pattern, cleaned_content, re.DOTALL)
     if not match:
         return None, "Missing or malformed frontmatter (must start with '---' and end with '---')"
 
@@ -132,16 +134,34 @@ def extract_frontmatter(content: str) -> Tuple[Optional[Dict[str, Any]], Optiona
         return None, f"YAML parsing error: {exc}"
 
 
-def validate_category_templates(blog_root: Path) -> List[str]:
+def validate_category_templates(blog_root: Path) -> Tuple[List[str], Dict[str, str]]:
     """
-    Validates that the 4 category index templates:
-    1. Exist on disk.
-    2. Have correct permalink frontmatter.
-    3. Use strictly 'post.category == <EXPECTED>' with NO loose tags OR conditions.
-    4. Prohibit any 'post.tags' or 'tags contains' in filtering logic.
+    Validates that:
+    1. Only authorized category directories exist under category/.
+    2. The 4 category index templates exist on disk.
+    3. Have correct permalink frontmatter.
+    4. Prohibit any 'post.tags' or 'tags contains' in the template.
+    5. Prohibit any 'elsif' branches.
+    6. Use strictly 'post.category == <EXPECTED>' with NO loose OR conditions.
+
+    Returns:
+      (errors, template_conditions_map)
+      where template_conditions_map maps pillar_key to the exact extracted Liquid condition string.
     """
     errors: List[str] = []
+    template_conditions: Dict[str, str] = {}
 
+    # 1. Directory Structure Scan: ensure no rogue category directories exist
+    category_base = blog_root / "category"
+    if category_base.exists() and category_base.is_dir():
+        for item in category_base.iterdir():
+            if item.is_dir() and item.name not in RESEARCH_PILLARS:
+                errors.append(
+                    f"[Unauthorized Category Directory] Unregistered category directory detected: 'category/{item.name}'. "
+                    f"Only the 4 registered pillars {list(RESEARCH_PILLARS.keys())} are permitted."
+                )
+
+    # 2. Template Integrity Checks for registered pillars
     for pillar_key, pillar_info in RESEARCH_PILLARS.items():
         template_rel = pillar_info["template"]
         template_file = blog_root / template_rel
@@ -158,7 +178,7 @@ def validate_category_templates(blog_root: Path) -> List[str]:
             errors.append(f"[Template Read Error] Failed to read {template_rel}: {e}")
             continue
 
-        # 1. Frontmatter check
+        # Frontmatter check
         fm_data, fm_err = extract_frontmatter(content)
         if fm_err:
             errors.append(f"[Template Frontmatter] {template_rel}: {fm_err}")
@@ -169,49 +189,57 @@ def validate_category_templates(blog_root: Path) -> List[str]:
                     f"does not match expected '{expected_permalink}'"
                 )
 
-        # 2. Strict Liquid loop condition check
-        # Look for {% for post in site.posts %} followed by {% if ... %}
-        for_loop_match = re.search(
-            r"\{%\s*for\s+post\s+in\s+site\.posts\s*%\}\s*(.*?)\s*\{%\s*endfor\s*%\}",
+        # Global Tag-pollution check across entire template
+        # Any condition in the file containing tags contains or post.tags is illegal
+        liquid_tags = re.findall(r"\{%\s*(.*?)\s*%\}", content)
+        for l_tag in liquid_tags:
+            l_clean = l_tag.strip()
+            if l_clean.startswith("elsif"):
+                errors.append(
+                    f"[Template Forbidden Elsif] {template_rel} contains multi-branch 'elsif': '{{% {l_clean} %}}'. "
+                    f"Category templates must use strict single category routing without fallback branches."
+                )
+            if "post.tags" in l_clean or "tags contains" in l_clean or "post.tag" in l_clean:
+                errors.append(
+                    f"[Template Tag Pollution] {template_rel} contains forbidden tag-based logic: '{{% {l_clean} %}}'. "
+                    f"Tag-based filtering in category templates is strictly prohibited."
+                )
+
+        # Post loop validation
+        for_loop_matches = re.findall(
+            r"\{%\s*for\s+post\s+in\s+site\.posts\s*%\}(.*?)\{%\s*endfor\s*%\}",
             content,
             re.DOTALL,
         )
-        if not for_loop_match:
+        if not for_loop_matches:
             errors.append(f"[Template Liquid Loop] {template_rel} is missing '{{% for post in site.posts %}}' loop.")
             continue
 
-        loop_body = for_loop_match.group(1)
+        # Check all loops in the template
+        for loop_idx, loop_body in enumerate(for_loop_matches):
+            if_matches = re.findall(r"\{%\s*if\s+(.*?)\s*%\}", loop_body)
+            if not if_matches:
+                errors.append(f"[Template Liquid Filter] {template_rel} loop #{loop_idx+1} does not contain '{{% if ... %}}' condition.")
+                continue
 
-        # Find the first {% if ... %} inside the post loop
-        if_match = re.search(r"\{%\s*if\s+(.*?)\s*%\}", loop_body)
-        if not if_match:
-            errors.append(f"[Template Liquid Filter] {template_rel} does not contain '{{% if ... %}}' condition.")
-            continue
+            primary_condition = if_matches[0].strip()
+            template_conditions[pillar_key] = primary_condition
 
-        condition = if_match.group(1).strip()
+            if " or " in primary_condition:
+                errors.append(
+                    f"[Template Loose OR] {template_rel} contains multi-clause OR condition: '{primary_condition}'. "
+                    f"Only strict single category equality is permitted."
+                )
 
-        # Strict checks against loose tag-based conditions
-        if "post.tags" in condition or "tags contains" in condition:
-            errors.append(
-                f"[Template Tag Pollution] {template_rel} contains loose tag matching: '{condition}'. "
-                f"Tag-based filtering in category templates is strictly prohibited."
-            )
+            # Strict pattern: post.category == 'Macro Intelligence' or "Macro Intelligence"
+            strict_pattern = r"^post\.category\s*==\s*['\"]" + re.escape(expected_category) + r"['\"]$"
+            if not re.match(strict_pattern, primary_condition):
+                errors.append(
+                    f"[Template Category Mismatch] {template_rel} filter condition '{primary_condition}' "
+                    f"does not match strict expected condition 'post.category == \\'{expected_category}\\'"
+                )
 
-        if " or " in condition:
-            errors.append(
-                f"[Template Loose OR] {template_rel} contains multi-clause OR condition: '{condition}'. "
-                f"Only strict single category equality is permitted."
-            )
-
-        # Expected strict pattern: post.category == 'Macro Intelligence'
-        strict_pattern = r"^post\.category\s*==\s*['\"]" + re.escape(expected_category) + r"['\"]$"
-        if not re.match(strict_pattern, condition):
-            errors.append(
-                f"[Template Category Mismatch] {template_rel} filter condition '{condition}' "
-                f"does not match strict expected condition 'post.category == \\'{expected_category}\\'"
-            )
-
-    return errors
+    return errors, template_conditions
 
 
 def validate_post_frontmatter(file_path: Path, blog_root: Path) -> Tuple[Optional[Dict[str, Any]], List[str]]:
@@ -219,8 +247,9 @@ def validate_post_frontmatter(file_path: Path, blog_root: Path) -> Tuple[Optiona
     Validates a single markdown post file:
     - Filename syntax YYYY-MM-DD-*.md
     - Frontmatter existence and schema
-    - Category validity against ALLOWED_CATEGORIES
-    - Non-empty tags list
+    - Mandatory singular 'category' in ALLOWED_CATEGORIES
+    - Guard against ambiguous plural 'categories'
+    - Non-empty tags list of non-empty strings
     - Referenced image assets existence on disk
     """
     errors: List[str] = []
@@ -258,7 +287,26 @@ def validate_post_frontmatter(file_path: Path, blog_root: Path) -> Tuple[Optiona
             f"[Post Unauthorized Category] {rel_path} category '{category}' is NOT in allowed categories: {allowed_list}."
         )
 
-    # 5. Tags verification
+    # 5. Guard against ambiguous plural 'categories' field in Jekyll
+    if "categories" in fm_data:
+        cats_val = fm_data.get("categories")
+        if isinstance(cats_val, list):
+            if len(cats_val) != 1 or cats_val[0] != category:
+                errors.append(
+                    f"[Post Ambiguous Categories] {rel_path} defines plural 'categories: {cats_val}' "
+                    f"which does not strictly match canonical singular 'category: {category}'. "
+                    f"To preserve 1:1 category routing, remove 'categories' or specify only [{category!r}]."
+                )
+        elif isinstance(cats_val, str):
+            if cats_val.strip() != category:
+                errors.append(
+                    f"[Post Ambiguous Categories] {rel_path} defines plural 'categories: {cats_val}' "
+                    f"differing from 'category: {category}'."
+                )
+        else:
+            errors.append(f"[Post Ambiguous Categories] {rel_path} defines invalid 'categories' format.")
+
+    # 6. Tags verification
     tags = fm_data.get("tags")
     if not isinstance(tags, list) or len(tags) == 0:
         errors.append(f"[Post Invalid Tags] {rel_path} 'tags' must be a non-empty list of tags.")
@@ -267,14 +315,11 @@ def validate_post_frontmatter(file_path: Path, blog_root: Path) -> Tuple[Optiona
             if not isinstance(t, str) or not t.strip():
                 errors.append(f"[Post Empty Tag] {rel_path} contains empty or non-string tag: {t!r}")
 
-    # 6. Asset references verification (images in markdown or HTML)
-    # Match markdown images: ![alt](/assets/...)
+    # 7. Asset references verification (images in markdown or HTML)
     img_matches = re.findall(r"!\[.*?\]\((/assets/[^)]+)\)", content)
-    # Match HTML images: <img ... src="/assets/..."
     img_matches += re.findall(r'<img[^>]+src=["\'](/assets/[^"\']+)["\']', content)
 
     for img_ref in img_matches:
-        # Strip anchors / query params
         clean_ref = img_ref.split("?")[0].split("#")[0].lstrip("/")
         asset_file = blog_root / clean_ref
         if not asset_file.exists():
@@ -283,26 +328,84 @@ def validate_post_frontmatter(file_path: Path, blog_root: Path) -> Tuple[Optiona
     return fm_data, errors
 
 
+def evaluate_liquid_condition(condition: str, post_meta: Dict[str, Any]) -> bool:
+    """
+    Evaluates a Liquid condition string against a post's metadata dictionary.
+    Supports atomic expressions and boolean combinators:
+      - post.category == 'Value' / "Value"
+      - post.category != 'Value' / "Value"
+      - post.tags contains 'Value' / "Value"
+      - Logical 'or' (split by ' or ')
+      - Logical 'and' (split by ' and ')
+    """
+    condition = condition.strip()
+
+    if " or " in condition:
+        clauses = [c.strip() for c in condition.split(" or ")]
+        return any(evaluate_liquid_condition(c, post_meta) for c in clauses if c)
+
+    if " and " in condition:
+        clauses = [c.strip() for c in condition.split(" and ")]
+        return all(evaluate_liquid_condition(c, post_meta) for c in clauses if c)
+
+    # Atomic condition: post.category == 'Value'
+    m_eq = re.match(r"^post\.category\s*(==|!=)\s*['\"](.*?)['\"]$", condition)
+    if m_eq:
+        op = m_eq.group(1)
+        target = m_eq.group(2)
+        actual = str(post_meta.get("category", ""))
+        return (actual == target) if op == "==" else (actual != target)
+
+    # Atomic condition: post.tags contains 'Value'
+    m_tags = re.match(r"^post\.tags\s+contains\s+['\"](.*?)['\"]$", condition)
+    if m_tags:
+        target_tag = m_tags.group(1)
+        actual_tags = post_meta.get("tags", [])
+        if isinstance(actual_tags, str):
+            actual_tags = [actual_tags]
+        elif not isinstance(actual_tags, list):
+            actual_tags = []
+        return target_tag in actual_tags
+
+    # Fallback equality check
+    return False
+
+
 def validate_mathematical_isolation(
     posts_data: Dict[str, Dict[str, Any]],
-    blog_root: Path
+    template_conditions: Optional[Dict[str, str]] = None,
+    blog_root: Optional[Path] = None,
 ) -> List[str]:
     """
     Performs rigorous mathematical set-theory isolation checks:
-    1. Disjointness: S_i ∩ S_j = ∅ for all research categories i ≠ j.
-    2. Manifesto Isolation: S_manifesto ∩ S_i = ∅ for all research pillars i.
-    3. Completeness: Every research post is assigned to exactly one category.
+    1. Template Simulation: Evaluates each template's Liquid filter against all posts to determine
+       the actual set of posts matched by each category template.
+    2. Disjointness: S_i ∩ S_j = ∅ for all research categories i ≠ j.
+    3. Manifesto Isolation: S_manifesto ∩ S_i = ∅ for all research pillars i.
+    4. Completeness & Singularity: Every research post is routed to EXACTLY ONE research pillar.
+    5. Template-Category Congruence: Matched post set equals declared category post set.
     """
     errors: List[str] = []
-
-    # Map each research pillar to its matched post file set
     matched_sets: Dict[str, Set[str]] = {}
+    declared_sets: Dict[str, Set[str]] = {}
+
     for pillar_key, pillar_info in RESEARCH_PILLARS.items():
         cat_name = pillar_info["category"]
-        matched_sets[pillar_key] = {
+        declared_sets[pillar_key] = {
             post_file for post_file, meta in posts_data.items()
             if meta.get("category") == cat_name
         }
+
+        # If template conditions are available, simulate runtime matching
+        if template_conditions and pillar_key in template_conditions:
+            cond = template_conditions[pillar_key]
+            matched_sets[pillar_key] = {
+                post_file for post_file, meta in posts_data.items()
+                if evaluate_liquid_condition(cond, meta)
+            }
+        else:
+            # Direct mapping fallback
+            matched_sets[pillar_key] = set(declared_sets[pillar_key])
 
     # Set of manifesto / announcement posts
     manifesto_posts: Set[str] = {
@@ -310,7 +413,7 @@ def validate_mathematical_isolation(
         if meta.get("category") in EXCLUDED_CATEGORIES_FROM_RESEARCH
     }
 
-    # 1. Disjoint Set Check (No post may belong to more than 1 pillar)
+    # 1. Disjoint Set Check: No post may be matched by more than 1 pillar template
     pillar_keys = list(RESEARCH_PILLARS.keys())
     for i in range(len(pillar_keys)):
         for j in range(i + 1, len(pillar_keys)):
@@ -334,28 +437,111 @@ def validate_mathematical_isolation(
                 f"leaked into research pillar '{pillar_cat}'!"
             )
 
-    # 3. Exhaustive Assignment Check
-    # Verify that every post in posts_data belongs to either one research pillar OR manifesto
-    all_pillar_posts = set().union(*matched_sets.values()) if matched_sets else set()
+    # 3. Exhaustive and Singular Routing Check
     for post_file, meta in posts_data.items():
         cat = meta.get("category")
         if cat in EXCLUDED_CATEGORIES_FROM_RESEARCH:
             continue
-        if post_file not in all_pillar_posts:
+
+        matched_pillars = [
+            RESEARCH_PILLARS[k]["category"]
+            for k in pillar_keys
+            if post_file in matched_sets[k]
+        ]
+
+        if len(matched_pillars) == 0:
             errors.append(
                 f"[Unrouted Research Post] Post '{post_file}' with category '{cat}' "
                 f"is not mapped to any defined research pillar!"
             )
+        elif len(matched_pillars) > 1:
+            errors.append(
+                f"[Multiple Category Routing Violation] Post '{post_file}' matched multiple "
+                f"research pillars: {matched_pillars}! Posts must map to exactly 1 category."
+            )
+
+    # 4. Template-Category Congruence Check (when template_conditions provided)
+    if template_conditions:
+        for pillar_key in pillar_keys:
+            cat_name = RESEARCH_PILLARS[pillar_key]["category"]
+            extra = matched_sets[pillar_key] - declared_sets[pillar_key]
+            missing = declared_sets[pillar_key] - matched_sets[pillar_key]
+            if extra:
+                errors.append(
+                    f"[Template Incongruence] Category '{cat_name}' template matched extra posts "
+                    f"not declared in '{cat_name}': {sorted(list(extra))}"
+                )
+            if missing:
+                errors.append(
+                    f"[Template Incongruence] Category '{cat_name}' template failed to match "
+                    f"posts declared in '{cat_name}': {sorted(list(missing))}"
+                )
 
     return errors
+
+
+def install_git_hook(blog_root: Path) -> Tuple[bool, str]:
+    """
+    Installs a git pre-commit hook in the repository to guarantee
+    automated validation before every local commit.
+    """
+    git_dir = blog_root / ".git"
+    if not git_dir.exists():
+        return False, f"Directory '{blog_root}' is not a git repository."
+
+    hooks_dir = git_dir / "hooks"
+    hooks_dir.mkdir(parents=True, exist_ok=True)
+    hook_file = hooks_dir / "pre-commit"
+
+    hook_content = """#!/bin/sh
+# Market Context 360 - Global Blog Pre-Commit Integrity Guard
+# Automatically validates blog templates, frontmatter schemas, and category disjointness.
+
+echo "🛡️  [Pre-Commit Hook] Running Market Context 360 Blog Integrity Guard..."
+
+PYTHON_BIN=""
+if python -c "import sys" >/dev/null 2>&1; then
+    PYTHON_BIN="python"
+elif python3 -c "import sys" >/dev/null 2>&1; then
+    PYTHON_BIN="python3"
+elif py -c "import sys" >/dev/null 2>&1; then
+    PYTHON_BIN="py"
+else
+    echo "❌ Python is required to run integrity validation but was not found." >&2
+    exit 1
+fi
+
+$PYTHON_BIN scripts/validate_global_blog.py
+EXIT_CODE=$?
+
+if [ $EXIT_CODE -ne 0 ]; then
+    echo "❌ [Pre-Commit Hook] Commit aborted: blog integrity validation failed!" >&2
+    echo "   Please fix the errors above or run 'python scripts/validate_global_blog.py' to inspect." >&2
+    exit 1
+fi
+
+echo "✅ [Pre-Commit Hook] Blog integrity verified (0 violations). Proceeding with commit."
+exit 0
+"""
+    try:
+        hook_file.write_text(hook_content, encoding="utf-8")
+        # Attempt to make hook executable
+        try:
+            import stat
+            hook_file.chmod(hook_file.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+        except Exception:
+            pass
+        return True, f"Pre-commit hook successfully installed at: {hook_file}"
+    except Exception as e:
+        return False, f"Failed to install pre-commit hook: {e}"
 
 
 def run_full_validation(blog_root: Optional[Path] = None) -> Tuple[bool, List[str], Dict[str, Any]]:
     """
     Executes full multi-stage validation:
-    Stage 1: Category Liquid Template Integrity (Linter)
-    Stage 2: Post Frontmatter Schema & Asset Existence
-    Stage 3: Mathematical Disjoint Set & Manifesto Isolation
+    Stage 1: Category Liquid Template Integrity (Linter) & Directory Architecture
+    Stage 2: Post Frontmatter Schema, Plural Categories Check & Asset Guard
+    Stage 3: Mathematical Disjoint Set, Manifesto Isolation & Template Simulation
     """
     if blog_root is None:
         blog_root = find_blog_root()
@@ -369,16 +555,17 @@ def run_full_validation(blog_root: Optional[Path] = None) -> Tuple[bool, List[st
         "stage1_errors": 0,
         "stage2_errors": 0,
         "stage3_errors": 0,
+        "git_hook_installed": (blog_root / ".git" / "hooks" / "pre-commit").exists(),
     }
 
-    # Stage 1: Category Template Linter
-    template_errors = validate_category_templates(blog_root)
+    # Stage 1: Category Template Linter & Directory Scan
+    template_errors, template_conditions = validate_category_templates(blog_root)
     stats["stage1_errors"] = len(template_errors)
     all_errors.extend(template_errors)
 
     # Stage 2: Post Schema & Asset Verification
     posts_dir = blog_root / "_posts"
-    post_files = sorted(list(posts_dir.glob("*.md")))
+    post_files = sorted(list(posts_dir.glob("*.md"))) if posts_dir.exists() else []
     stats["posts_checked"] = len(post_files)
 
     posts_data: Dict[str, Dict[str, Any]] = {}
@@ -396,8 +583,8 @@ def run_full_validation(blog_root: Optional[Path] = None) -> Tuple[bool, List[st
 
     stats["stage2_errors"] = stage2_err_count
 
-    # Stage 3: Mathematical Set Isolation Check
-    isolation_errors = validate_mathematical_isolation(posts_data, blog_root)
+    # Stage 3: Mathematical Set Isolation & Simulation Check
+    isolation_errors = validate_mathematical_isolation(posts_data, template_conditions, blog_root)
     stats["stage3_errors"] = len(isolation_errors)
     all_errors.extend(isolation_errors)
 
@@ -413,6 +600,7 @@ def print_report(is_valid: bool, errors: List[str], stats: Dict[str, Any]) -> No
     print(f" Root Directory      : {stats['blog_root']}")
     print(f" Templates Checked   : {stats['templates_checked']} Core Category Indices")
     print(f" Posts Analyzed      : {stats['posts_checked']} Publications")
+    print(f" Git Pre-Commit Hook : {'✅ Installed & Active' if stats['git_hook_installed'] else '⚠️  Not Installed (run --install-hook)'}")
     print(" Category Breakdown  :")
     for cat, count in stats.get("categories_found", {}).items():
         print(f"   • {cat:<26}: {count} post(s)")
@@ -445,6 +633,17 @@ def main() -> int:
     except Exception as e:
         print(f"[FATAL] {e}", file=sys.stderr)
         return 1
+
+    if "--install-hook" in sys.argv:
+        success, msg = install_git_hook(blog_root)
+        print(msg)
+        return 0 if success else 1
+
+    # Auto-ensure git pre-commit hook is installed if git repo exists
+    git_dir = blog_root / ".git"
+    hook_file = git_dir / "hooks" / "pre-commit"
+    if git_dir.exists() and not hook_file.exists():
+        install_git_hook(blog_root)
 
     is_valid, errors, stats = run_full_validation(blog_root)
     print_report(is_valid, errors, stats)
