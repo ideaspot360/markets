@@ -30,7 +30,7 @@ permalink: /category/macro/
 
   {% assign count = 0 %}
   {% for post in site.posts %}
-    {% if post.category == 'Macro Intelligence' or post.tags contains 'MacroIntelligence' or post.tags contains 'FederalReserve' %}
+    {% if post.category == 'Macro Intelligence' %}
       {% assign count = count | plus: 1 %}
       <article class="post-card" style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 22px 26px; margin-bottom: 18px;">
         <div style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">

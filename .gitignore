@@ -1,0 +1,7 @@
+.sass-cache/
+.jekyll-cache/
+_site/
+.pytest_cache/
+__pycache__/
+*.pyc
+.DS_Store
