@@ -261,12 +261,12 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 19px;
-  height: 19px;
+  min-width: 20px;
+  height: 20px;
   padding: 0 5px;
-  font-size: 0.70rem;
-  font-weight: 700;
-  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
   border-radius: 10px;
   background: var(--code-bg);
   color: var(--text-muted);
