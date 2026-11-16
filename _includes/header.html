@@ -1,12 +1,9 @@
 <header class="site-header">
   <div class="container header-container">
-    <div class="header-left">
-      <a class="site-title" href="{{ '/' | relative_url }}">
-        <span class="logo-badge">MARKETS</span>
-        <span class="logo-title">Market Context 360</span>
-      </a>
-      <span class="site-tagline">Global Macro &amp; Systematic Equity Research</span>
-    </div>
+    <a class="site-title" href="{{ '/' | relative_url }}">
+      <span class="logo-badge">MARKETS</span>
+      <span class="logo-title">Market Context 360</span>
+    </a>
 
     <nav class="site-nav">
       <a href="{{ '/' | relative_url }}" class="nav-link">Research</a>
@@ -15,9 +12,11 @@
       <a href="{{ '/category/options-income/' | relative_url }}" class="nav-link" title="Covered Call ETFs, 0DTE, Option Income">Options &amp; Income</a>
       <a href="{{ '/category/quant/' | relative_url }}" class="nav-link">Quant</a>
       <a href="{{ '/about' | relative_url }}" class="nav-link">Methodology</a>
-      <span class="nav-divider"></span>
+    </nav>
+
+    <div class="header-actions">
       <a href="https://stock.ideaspot360.com" class="nav-link nav-external" target="_blank" rel="noopener" title="Alpha Context - Korean Market Edition"><span class="edition-pill">KR</span> Alpha Context ↗</a>
       <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">🌙 Dark</button>
-    </nav>
+    </div>
   </div>
 </header>
