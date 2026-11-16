@@ -75,15 +75,15 @@ function initPanZoomLightbox() {
   modal.innerHTML = `
     <div class="panzoom-toolbar">
       <span class="panzoom-scale-badge" id="pz-scale">100%</span>
-      <button class="panzoom-btn" id="pz-zoom-out" title="축소 (-)">−</button>
-      <button class="panzoom-btn" id="pz-zoom-in" title="확대 (+)">+</button>
-      <button class="panzoom-btn" id="pz-reset" title="원래 크기 (리셋)">↺</button>
-      <button class="panzoom-btn" id="pz-close" title="닫기 (Esc)" style="margin-left: 6px; font-weight: bold;">✕</button>
+      <button class="panzoom-btn" id="pz-zoom-out" title="Zoom Out (−)">−</button>
+      <button class="panzoom-btn" id="pz-zoom-in" title="Zoom In (+)">+</button>
+      <button class="panzoom-btn" id="pz-reset" title="Reset View (R)">↺</button>
+      <button class="panzoom-btn" id="pz-close" title="Close (Esc)" style="margin-left: 6px; font-weight: bold;">✕</button>
     </div>
     <div class="panzoom-viewport" id="pz-viewport">
       <img class="panzoom-image" id="pz-image" src="" alt="Zoomable Image">
     </div>
-    <div class="panzoom-hint">🖱️ 휠: 줌 인/아웃 | 드래그/방향키: 이동 | 더블클릭: 2.5x | +, -: 줌 | 0/R: 리셋 | ESC: 닫기</div>
+    <div class="panzoom-hint">🖱️ Wheel / +, -: Zoom | Drag / Arrow Keys: Pan | Double-Click: 2.5x | 0 / R: Reset | ESC: Close</div>
   `;
   document.body.appendChild(modal);
 
