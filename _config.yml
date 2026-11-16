@@ -1,0 +1,49 @@
+# Site settings
+title: "Market Context 360"
+subtitle: "Global Macro Intelligence & Systematic Equity Research"
+email: "everhashk@gmail.com"
+description: >-
+  Institutional-grade macroeconomic analysis, global liquidity regimes,
+  US equity sector deep-dives, earnings post-mortems, and systematic investment frameworks.
+baseurl: ""
+url: "https://markets.ideaspot360.com"
+twitter_username: ideaspot360
+github_username: ideaspot360
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+
+# Author & E-E-A-T
+author:
+  name: "Market Context Research"
+  bio: "Quantitative macro research team decoding central bank liquidity, equity risk premia, yield curve dynamics, and cross-asset capital flows."
+  avatar: "/assets/images/author.png"
+
+# Navigation
+header_pages:
+  - about.md
+
+# Ads & Analytics (Configurable)
+google_analytics: "" # e.g. G-XXXXXXXXXX
+google_adsense_client: "" # e.g. ca-pub-XXXXXXXXXXXXXXXX
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/

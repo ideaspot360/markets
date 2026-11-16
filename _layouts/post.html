@@ -1,0 +1,51 @@
+---
+layout: default
+---
+
+<article class="post-content">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">📅 {{ page.date | date: "%B %d, %Y" }}</time>
+      <span>&bull;</span>
+      <span>✍️ {{ page.author | default: site.author.name }}</span>
+      {% if page.category %}
+      <span>&bull;</span>
+      <span class="category-badge">{{ page.category }}</span>
+      {% endif %}
+      {% if page.tags %}
+      <span>&bull;</span>
+      <div class="tags" style="display: inline-flex; margin-top: 0;">
+        {% for tag in page.tags %}
+        <span class="tag">#{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.summary %}
+    <p class="post-lead">{{ page.summary }}</p>
+    {% endif %}
+  </header>
+
+  <div class="entry-content">
+    {{ content }}
+  </div>
+
+  <!-- In-Post Research Note / Disclaimer Box -->
+  <div class="post-disclaimer-box">
+    <h4>📊 Research Disclosure & Analytical Note</h4>
+    <p>
+      본 리포트는 FRED, 미 연준(Fed), 미국 재무부(US Treasury), SEC EDGAR 공시 및 Bloomberg/FactSet 공개 데이터를 기반으로 정량 분석한 결과입니다. 
+      인용된 모든 시계열 차트 및 다이어그램은 클릭 시 <strong>초정밀 줌/팬 모달</strong>로 고해상도 조회가 가능합니다.
+      본 분석은 특정 종목의 매수·매도 추천이 아니며, 투자 판단에 대한 최종 책임은 전적으로 투자자에게 있습니다.
+    </p>
+  </div>
+
+  <!-- Author E-E-A-T Box -->
+  <div class="author-eeat-box">
+    <h4>About {{ site.author.name }}</h4>
+    <p>
+      {{ site.author.bio }}
+    </p>
+  </div>
+</article>
