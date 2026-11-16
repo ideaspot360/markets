@@ -82,65 +82,106 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 68px;
+  height: 64px;
+  max-width: 1200px;
 }
 
 .header-left {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
 .site-title {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   text-decoration: none;
   color: var(--text-color);
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.logo-title {
+  white-space: nowrap;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .logo-badge {
   background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
   color: #ffffff;
-  font-size: 0.72rem;
+  font-size: 0.70rem;
   font-weight: 800;
-  padding: 3px 8px;
+  padding: 3px 7px;
   border-radius: 4px;
   letter-spacing: 0.08em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .site-tagline {
   display: none;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  border-left: 1px solid var(--border-color);
-  padding-left: 14px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1300px) {
   .site-tagline {
     display: inline-block;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    border-left: 1px solid var(--border-color);
+    padding-left: 12px;
+    white-space: nowrap;
   }
 }
 
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 12px;
+  white-space: nowrap;
+  flex-wrap: nowrap;
 }
 
 .nav-link {
   text-decoration: none;
   color: var(--text-muted);
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: color 0.2s;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
   color: var(--primary-color);
+  background: var(--code-bg);
+}
+
+.nav-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border-color);
+  margin: 0 2px;
+}
+
+@media (max-width: 900px) {
+  .header-container {
+    height: auto;
+    padding: 10px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .site-nav {
+    overflow-x: auto;
+    padding-bottom: 4px;
+    gap: 10px;
+  }
 }
 
 .nav-external {
@@ -176,6 +217,8 @@ body {
   border-radius: 6px;
   letter-spacing: -0.01em;
   transition: all 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .pillar-chip:hover {
