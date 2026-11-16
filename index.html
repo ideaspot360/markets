@@ -14,13 +14,30 @@ title: "Global Macro & Systematic Equity Intelligence"
     Central bank liquidity regimes, equity risk premium dynamics, balance sheet mechanics, and rigorous empirical investment frameworks for global capital allocators.
   </p>
 
-  <!-- Core Research Pillars (Focus Areas) -->
+  <!-- Core Research Pillars (Focus Areas) with Dynamic Post Count Badges -->
+  {% assign macro_count = site.posts | where: "category", "Macro Intelligence" | size %}
+  {% assign equities_count = site.posts | where: "category", "US Systematic Equity" | size %}
+  {% assign options_count = site.posts | where: "category", "Options & Income" | size %}
+  {% assign quant_count = site.posts | where: "category", "Quantitative Frameworks" | size %}
+
   <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
     <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 4px;">Focus Areas:</span>
-    <a href="{{ '/category/macro/' | relative_url }}" class="pillar-chip">🌐 Macro Intelligence</a>
-    <a href="{{ '/category/equities/' | relative_url }}" class="pillar-chip">📈 US Systematic Equity</a>
-    <a href="{{ '/category/options-income/' | relative_url }}" class="pillar-chip">⚡ Options &amp; Income</a>
-    <a href="{{ '/category/quant/' | relative_url }}" class="pillar-chip">📐 Quantitative Frameworks</a>
+    <a href="{{ '/category/macro/' | relative_url }}" class="pillar-chip">
+      🌐 Macro Intelligence
+      <span class="chip-count{% if macro_count > 0 %} active{% endif %}">{{ macro_count }}</span>
+    </a>
+    <a href="{{ '/category/equities/' | relative_url }}" class="pillar-chip">
+      📈 US Systematic Equity
+      <span class="chip-count{% if equities_count > 0 %} active{% endif %}">{{ equities_count }}</span>
+    </a>
+    <a href="{{ '/category/options-income/' | relative_url }}" class="pillar-chip">
+      ⚡ Options &amp; Income
+      <span class="chip-count{% if options_count > 0 %} active{% endif %}">{{ options_count }}</span>
+    </a>
+    <a href="{{ '/category/quant/' | relative_url }}" class="pillar-chip">
+      📐 Quantitative Frameworks
+      <span class="chip-count{% if quant_count > 0 %} active{% endif %}">{{ quant_count }}</span>
+    </a>
   </div>
 </div>
 

@@ -235,13 +235,15 @@ body {
 }
 
 .pillar-chip {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   color: var(--text-color);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 500;
-  padding: 4px 10px;
+  padding: 5px 11px;
   border-radius: 6px;
   letter-spacing: -0.01em;
   transition: all 0.2s ease;
@@ -252,6 +254,41 @@ body {
 .pillar-chip:hover {
   border-color: var(--primary-color);
   color: var(--primary-color);
+  background: var(--code-bg);
+}
+
+.chip-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+  font-size: 0.70rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  border-radius: 10px;
+  background: var(--code-bg);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.chip-count.active {
+  background: rgba(2, 132, 199, 0.12);
+  color: var(--primary-color);
+  border-color: rgba(2, 132, 199, 0.35);
+}
+
+[data-theme="dark"] .chip-count.active {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.pillar-chip:hover .chip-count {
+  border-color: var(--primary-color);
 }
 
 .theme-btn {
