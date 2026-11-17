@@ -22,7 +22,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pyyaml pytest
-          # 중앙 코어 패키지 설치 (you_idea_blog_core)
           pip install git+https://github.com/everhashk-justin/you_idea_blog_core.git
 
       - name: Run Integrity Guard & Category Linter
