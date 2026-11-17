@@ -29,13 +29,17 @@ except ImportError:
 # Standard Allowed Categories
 ALLOWED_CATEGORIES: Set[str] = {
     "Macro Intelligence",
+    "Market Structure & Technicals",
+    "Options & Systematic Income",
+    "Equities & Factor Research",
+    "Platform Manifesto",
+    # Legacy categories allowed for backward compatibility
     "US Systematic Equity",
     "Options & Income",
     "Quantitative Frameworks",
-    "Platform Manifesto",
 }
 
-# The 4 Core Research Pillars and their exact template & category configuration
+# The 4 Core Research Pillars and their exact template & category configuration (Plan A: Institutional 4-Pillars)
 RESEARCH_PILLARS: Dict[str, Dict[str, str]] = {
     "macro": {
         "title": "Macro Intelligence & Central Bank Liquidity",
@@ -44,25 +48,25 @@ RESEARCH_PILLARS: Dict[str, Dict[str, str]] = {
         "permalink": "/category/macro/",
         "pillar_badge": "PILLAR 01",
     },
-    "equities": {
-        "title": "US Systematic Equity & Cash Flow Analytics",
-        "category": "US Systematic Equity",
-        "template": "category/equities/index.html",
-        "permalink": "/category/equities/",
+    "technicals": {
+        "title": "Market Structure, Order Flow & Technical Frameworks",
+        "category": "Market Structure & Technicals",
+        "template": "category/technicals/index.html",
+        "permalink": "/category/technicals/",
         "pillar_badge": "PILLAR 02",
     },
     "options-income": {
-        "title": "Covered Call ETFs & Option Income Strategies",
-        "category": "Options & Income",
+        "title": "Options & Systematic Income Frameworks",
+        "category": "Options & Systematic Income",
         "template": "category/options-income/index.html",
         "permalink": "/category/options-income/",
         "pillar_badge": "PILLAR 03",
     },
-    "quant": {
-        "title": "Quantitative Frameworks & Algorithmic Trading",
-        "category": "Quantitative Frameworks",
-        "template": "category/quant/index.html",
-        "permalink": "/category/quant/",
+    "equities": {
+        "title": "Equities & Factor Research Analytics",
+        "category": "Equities & Factor Research",
+        "template": "category/equities/index.html",
+        "permalink": "/category/equities/",
         "pillar_badge": "PILLAR 04",
     },
 }

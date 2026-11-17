@@ -128,5 +128,6 @@ Third, capital discipline dictates a shift toward organic Free Cash Flow product
 ---
 
 <div class="post-disclaimer">
-  <strong>Regulatory Disclaimer:</strong> This publication is strictly for educational and institutional research purposes and does not constitute investment advice, financial analysis, or an offer to buy or sell securities. Past performance and theoretical liquidity models are not indicative of future market returns.
+  <strong>Regulatory Compliance &amp; Legal Disclaimer:</strong><br>
+  <em>Market Context 360 is an independent financial research publication providing impersonal macroeconomic, quantitative, and technical analysis for educational purposes only. The information presented herein does not constitute individualized investment advice, financial planning, or a recommendation or solicitation to buy, sell, or hold any security, commodity, or investment product. Market Context 360 is not a Registered Investment Adviser (RIA), broker-dealer, or fiduciary under the U.S. Investment Advisers Act of 1940 or FINRA regulations. Historical backtests, quantitative frameworks, and empirical models are hypothetical, educational, and subject to substantial market risks, including the potential loss of principal. Readers must exercise independent judgment and consult with a licensed, fiduciary financial advisor before executing any capital allocation decisions.</em>
 </div>

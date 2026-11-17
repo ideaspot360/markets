@@ -182,7 +182,7 @@ def test_category_mismatch_detection(tmp_path):
     for p_key, p_info in RESEARCH_PILLARS.items():
         p_dir = tmp_path / "category" / p_key
         p_dir.mkdir(parents=True)
-        wrong_cat = "US Systematic Equity" if p_key == "macro" else p_info["category"]
+        wrong_cat = "Equities & Factor Research" if p_key == "macro" else p_info["category"]
         (p_dir / "index.html").write_text(
             f"""---
 layout: default
@@ -235,7 +235,7 @@ def test_ambiguous_categories_plural_field(tmp_path):
 title: "Test Ambiguous Categories"
 date: 2026-11-16 10:00:00 +0900
 category: "Macro Intelligence"
-categories: ["Macro Intelligence", "US Systematic Equity"]
+categories: ["Macro Intelligence", "Equities & Factor Research"]
 tags: [Liquidity]
 author: "Test Author"
 summary: "Test summary"
@@ -301,7 +301,7 @@ def test_manifesto_isolation_and_disjointness():
     """Verifies mathematical disjoint set and manifesto isolation logic."""
     posts_mock = {
         "post1.md": {"category": "Macro Intelligence"},
-        "post2.md": {"category": "US Systematic Equity"},
+        "post2.md": {"category": "Equities & Factor Research"},
         "manifesto.md": {"category": "Platform Manifesto"},
     }
     errors = validate_mathematical_isolation(posts_mock)
@@ -333,7 +333,7 @@ def test_disjoint_set_collision_simulation():
             "tags": ["FederalReserve", "SP500"],
         },
         "apple-fcf.md": {
-            "category": "US Systematic Equity",
+            "category": "Equities & Factor Research",
             "tags": ["Apple", "CashFlow"],
         },
     }
@@ -341,9 +341,9 @@ def test_disjoint_set_collision_simulation():
     # Equities template improperly includes loose tag condition
     tampered_conditions = {
         "macro": "post.category == 'Macro Intelligence'",
-        "equities": "post.category == 'US Systematic Equity' or post.tags contains 'SP500'",
-        "options-income": "post.category == 'Options & Income'",
-        "quant": "post.category == 'Quantitative Frameworks'",
+        "technicals": "post.category == 'Market Structure & Technicals'",
+        "options-income": "post.category == 'Options & Systematic Income'",
+        "equities": "post.category == 'Equities & Factor Research' or post.tags contains 'SP500'",
     }
 
     errors = validate_mathematical_isolation(posts_mock, tampered_conditions)
@@ -365,9 +365,9 @@ def test_manifesto_leak_simulation():
 
     tampered_conditions = {
         "macro": "post.category == 'Macro Intelligence' or post.tags contains 'ManifestoTag'",
-        "equities": "post.category == 'US Systematic Equity'",
-        "options-income": "post.category == 'Options & Income'",
-        "quant": "post.category == 'Quantitative Frameworks'",
+        "technicals": "post.category == 'Market Structure & Technicals'",
+        "options-income": "post.category == 'Options & Systematic Income'",
+        "equities": "post.category == 'Equities & Factor Research'",
     }
 
     errors = validate_mathematical_isolation(posts_mock, tampered_conditions)

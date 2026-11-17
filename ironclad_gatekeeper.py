@@ -839,6 +839,7 @@ GLOBAL_DISCLAIMER_PATTERNS = [
     r"(?i)\bdisclaimer\b",
     r"(?i)\bnot\s+financial\s+advice\b",
     r"(?i)\bnot\s+an\s+investment\s+advice\b",
+    r"(?i)\bnot\s+individualized\s+investment\s+advice\b",
     r"(?i)\binformational\s+purposes\s+only\b",
     r"(?i)\beducational\s+purposes\s+only\b",
     r"(?i)\bdo\s+your\s+own\s+research\b",
@@ -846,6 +847,9 @@ GLOBAL_DISCLAIMER_PATTERNS = [
     r"(?i)\bconsult\s+a\s+licensed\s+financial\s+advisor\b",
     r"(?i)\bfor\s+research\s+purposes\s+only\b",
     r"(?i)\brisk\s+of\s+loss\b",
+    r"(?i)\bloss\s+of\s+principal\b",
+    r"(?i)\bregulatory\s+compliance\b",
+    r"(?i)\bnot\s+a\s+registered\s+investment\s+adviser\b",
 ]
 
 
@@ -1729,7 +1733,7 @@ class IroncladGatekeeper:
         is_en_financial = (
             platform in ["markets"] or
             "markets" in norm_path or
-            (platform == "dev" and any(k in category.lower() for k in ["finance", "market", "macro", "quant", "stock", "trading", "investment"])) or
+            (platform == "dev" and any(k in category.lower() for k in ["finance", "market", "macro", "quant", "stock", "trading", "investment", "technicals", "options", "equities"])) or
             (bool(re.search(r"(?i)\b(?:s&p\s*500|nasdaq|treasury\s+yield|fed\s+liquidity|equity\s+market|stock\s+market|quantitative\s+trading|macroeconomic)\b", body)) and
              len(re.findall(r"[가-힣]", body[:500])) == 0)
         )
