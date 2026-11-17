@@ -604,11 +604,11 @@ def run_full_validation(blog_root: Optional[Path] = None) -> Tuple[bool, List[st
     try:
         from blog_core import IroncladGatekeeper
 
-        gate = IroncladGatekeeper()
+        gate = IroncladGatekeeper(platform="markets")
         for post_file in posts_data.keys():
             full_path = str(posts_dir / post_file)
-            report = gate.verify(full_path, platform_override="markets")
-            if not report.is_passed:
+            report = gate.evaluate_file(full_path)
+            if not report.passed:
                 for v in report.violations:
                     if v.severity == "REJECT":
                         stage4_errors.append(f"[Ironclad Gatekeeper] {post_file} Line {v.line_number}: {v.message}")
