@@ -588,6 +588,28 @@ def run_full_validation(blog_root: Optional[Path] = None) -> Tuple[bool, List[st
     stats["stage3_errors"] = len(isolation_errors)
     all_errors.extend(isolation_errors)
 
+    # Stage 4: Ironclad Gatekeeper Hard Block Quality Guard
+    stage4_errors: List[str] = []
+    try:
+        ws_root = blog_root.parents[2]
+        if str(ws_root) not in sys.path:
+            sys.path.insert(0, str(ws_root))
+        from ironclad_gatekeeper import IroncladGatekeeper
+
+        gate = IroncladGatekeeper()
+        for post_file in posts_data.keys():
+            full_path = str(posts_dir / post_file)
+            report = gate.verify(full_path, platform_override="markets")
+            if not report.is_passed:
+                for v in report.violations:
+                    if v.severity == "REJECT":
+                        stage4_errors.append(f"[Ironclad Gatekeeper] {post_file} Line {v.line_number}: {v.message}")
+    except Exception as e:
+        stage4_errors.append(f"[Ironclad Gatekeeper Integration] Failed to execute gatekeeper: {e}")
+
+    stats["stage4_errors"] = len(stage4_errors)
+    all_errors.extend(stage4_errors)
+
     is_valid = len(all_errors) == 0
     return is_valid, all_errors, stats
 
@@ -608,11 +630,13 @@ def print_report(is_valid: bool, errors: List[str], stats: Dict[str, Any]) -> No
     s1_res = "✅ PASS" if stats['stage1_errors'] == 0 else f"❌ FAIL ({stats['stage1_errors']} errors)"
     s2_res = "✅ PASS" if stats['stage2_errors'] == 0 else f"❌ FAIL ({stats['stage2_errors']} errors)"
     s3_res = "✅ PASS" if stats['stage3_errors'] == 0 else f"❌ FAIL ({stats['stage3_errors']} errors)"
+    s4_res = "✅ PASS" if stats.get('stage4_errors', 0) == 0 else f"❌ FAIL ({stats.get('stage4_errors', 0)} errors)"
 
     print(" Guard Stage Results :")
     print(f"   [Stage 1] Category Template Liquid Linter : {s1_res}")
     print(f"   [Stage 2] Frontmatter Schema & Asset Guard: {s2_res}")
     print(f"   [Stage 3] Mathematical Disjoint Isolation : {s3_res}")
+    print(f"   [Stage 4] Ironclad Gatekeeper Quality Guard: {s4_res}")
     print("-" * 78)
 
     if is_valid:

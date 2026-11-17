@@ -124,3 +124,9 @@ Third, capital discipline dictates a shift toward organic Free Cash Flow product
 ---
 
 *Market Context 360 publishes weekly quantitative research on central bank liquidity dynamics, sovereign discount rates, and empirical equity valuation models.*
+
+---
+
+<div class="post-disclaimer">
+  <strong>Regulatory Disclaimer:</strong> This publication is strictly for educational and institutional research purposes and does not constitute investment advice, financial analysis, or an offer to buy or sell securities. Past performance and theoretical liquidity models are not indicative of future market returns.
+</div>
