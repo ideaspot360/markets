@@ -96,3 +96,9 @@ All analysis published by Market Context 360 adheres to strict standards of inst
 We welcome global portfolio managers, institutional analysts, quantitative researchers, and disciplined private investors to explore our research archive.
 
 *Subscribe to our [RSS Feed](/feed.xml) and bookmark our portal for continuous updates as market regimes evolve.*
+
+---
+
+<div class="post-disclaimer">
+  <strong>Regulatory Disclaimer:</strong> This manifesto is strictly for educational and institutional research purposes and does not constitute investment advice, financial analysis, or an offer to buy or sell securities. Past performance and theoretical models are not indicative of future market returns.
+</div>
