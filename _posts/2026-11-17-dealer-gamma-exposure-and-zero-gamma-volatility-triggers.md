@@ -20,7 +20,7 @@ Understanding the structural boundary where aggregate dealer gamma transitions f
 
 Derivative market makers operate as continuous liquidity providers across exchange-listed options chains. Because dealers maintain bid and ask quotes for institutional and retail market participants, their aggregate inventory reflects the inverse of market positioning. To insulate their books from directional equity price changes, options dealers systematically hedge delta via S&P 500 e-mini futures (`ES`) and index equities:
 
-![S&P 500 Dealer Gamma Exposure Architecture](/assets/images/posts/2026-11-17-dealer-gamma-exposure-framework.png)
+![S&P 500 Dealer Gamma Exposure Architecture](/assets/images/posts/2026-11-17-dealer-gamma-exposure-and-zero-gamma-volatility-triggers.png)
 *Figure 1: Empirical architecture of S&P 500 Dealer Net Gamma Exposure (GEX), strike-level positioning, and realized volatility regime transitions. Click the diagram to activate the interactive Pan & Zoom inspection stage (0.5x to 6.0x magnification).*
 
 The structural framework illustrated above demonstrates how dealer positioning creates two fundamentally distinct intraday market environments:

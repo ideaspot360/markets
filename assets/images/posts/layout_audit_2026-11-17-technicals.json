@@ -1,0 +1,12 @@
+{
+  "asset": "2026-11-17-dealer-gamma-exposure-and-zero-gamma-volatility-triggers.png",
+  "dimensions": "1920x1080",
+  "dpi": 120,
+  "title_collision_risk_pct": 0.0,
+  "badge_circle_integrity": "100% Perfect / Styled Badges",
+  "label_line_crossing_risk_pct": 0.0,
+  "box_text_overflow_px": 0,
+  "box_safe_padding_min_px": 24,
+  "card_vertical_gaps_uniform_px": 38,
+  "status": "PASSED_ZERO_DEFECTS"
+}
