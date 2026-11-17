@@ -17,13 +17,11 @@ from pathlib import Path
 from typing import Dict, List, Set, Tuple, Any, Optional
 import yaml
 
-# Ensure repository root is on sys.path for bundled ironclad_gatekeeper
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Import IroncladGatekeeper from centralized blog_core package
 try:
-    import ironclad_gatekeeper
-    from ironclad_gatekeeper import IroncladGatekeeper
+    import blog_core
+    from blog_core import IroncladGatekeeper
 except ImportError:
-    ironclad_gatekeeper = None
     IroncladGatekeeper = None
 
 # Standard Allowed Categories
@@ -601,12 +599,10 @@ def run_full_validation(blog_root: Optional[Path] = None) -> Tuple[bool, List[st
     stats["stage3_errors"] = len(isolation_errors)
     all_errors.extend(isolation_errors)
 
-    # Stage 4: Ironclad Gatekeeper Hard Block Quality Guard
+    # Stage 4: Ironclad Gatekeeper Hard Block Quality Guard (Centralized blog_core)
     stage4_errors: List[str] = []
     try:
-        if str(blog_root) not in sys.path:
-            sys.path.insert(0, str(blog_root))
-        from ironclad_gatekeeper import IroncladGatekeeper
+        from blog_core import IroncladGatekeeper
 
         gate = IroncladGatekeeper()
         for post_file in posts_data.keys():
