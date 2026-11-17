@@ -17,6 +17,15 @@ from pathlib import Path
 from typing import Dict, List, Set, Tuple, Any, Optional
 import yaml
 
+# Ensure repository root is on sys.path for bundled ironclad_gatekeeper
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+try:
+    import ironclad_gatekeeper
+    from ironclad_gatekeeper import IroncladGatekeeper
+except ImportError:
+    ironclad_gatekeeper = None
+    IroncladGatekeeper = None
+
 # Standard Allowed Categories
 ALLOWED_CATEGORIES: Set[str] = {
     "Macro Intelligence",
@@ -591,9 +600,8 @@ def run_full_validation(blog_root: Optional[Path] = None) -> Tuple[bool, List[st
     # Stage 4: Ironclad Gatekeeper Hard Block Quality Guard
     stage4_errors: List[str] = []
     try:
-        ws_root = blog_root.parents[2]
-        if str(ws_root) not in sys.path:
-            sys.path.insert(0, str(ws_root))
+        if str(blog_root) not in sys.path:
+            sys.path.insert(0, str(blog_root))
         from ironclad_gatekeeper import IroncladGatekeeper
 
         gate = IroncladGatekeeper()
