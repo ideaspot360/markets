@@ -41,22 +41,19 @@ Every publication must map **1:1 exclusively** to exactly one of the 4 research 
 
 ---
 
-## 🛡️ Automated Integrity Guard & Pre-Commit Enforcement
+## 🛡️ Storefront Isolation & Quality Enforcement
 
-To prevent category collisions, tag pollution, missing assets, or frontmatter schema errors, an automated 3-stage validation guard is strictly enforced:
+In accordance with our **Factory-to-Storefront Architecture (PART 0-C)**, this repository serves exclusively as a **pure public storefront**. All research engines, diagram visualizers, and audit scripts are isolated in the central factory (`everhashk-justin/stock_alram`).
 
-### Install Local Git Pre-Commit Hook
+### Integrity Verification (Central Factory)
+Before committing or publishing to this repository, publications are strictly verified using the central factory tools:
 ```bash
-python scripts/install_git_hook.py
-# or
-python scripts/validate_global_blog.py --install-hook
-```
-Once installed, `git commit` automatically runs the validator and aborts if any violation is detected.
+# Central Ironclad Gatekeeper
+blog-gatekeeper --dir growth_engine/03_blog_hub/stock_blog_global/_posts/ --platform markets
 
-### Manual Verification
-```bash
-python scripts/validate_global_blog.py
-pytest scripts/test_validate_global_blog.py -v
+# Or factory validator
+python tools/blog_tools/stock_blog_global/scripts/validate_global_blog.py
+pytest tools/blog_tools/stock_blog_global/scripts/test_validate_global_blog.py -v
 ```
 
 ---
@@ -80,14 +77,14 @@ layout: post
 # Publication Body...
 ```
 
-### Step 2: Validate & Commit
+### Step 2: Validate via Factory Gate & Commit
 ```bash
-# Verify integrity (0 violations required)
-python scripts/validate_global_blog.py
+# Verify integrity via central factory gatekeeper (0 violations required)
+blog-gatekeeper --dir growth_engine/03_blog_hub/stock_blog_global/_posts/ --platform markets
 
-# Commit and Push
+# Commit and Push from storefront
 git add .
 git commit -m "feat(markets): publish new report title"
 git push origin main
 ```
-The publication is re-validated via GitHub Actions CI and goes live globally at `https://markets.ideaspot360.com` immediately upon push.
+The publication goes live globally at `https://markets.ideaspot360.com` via GitHub Pages immediately upon push.
