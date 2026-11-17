@@ -99,6 +99,10 @@ function initPanZoomLightbox() {
   let translateX = 0;
   let translateY = 0;
   let isDragging = false;
+  let hasDragged = false;
+  let dragStartX = 0;
+  let dragStartY = 0;
+  const DRAG_THRESHOLD = 5;
   let startX = 0;
   let startY = 0;
   let lastPinchDist = null;
@@ -167,15 +171,23 @@ function initPanZoomLightbox() {
 
   // Mouse Drag Pan
   viewport.addEventListener("mousedown", (e) => {
-    if (e.target.closest(".panzoom-toolbar")) return;
+    if (e.button !== 0) return; // Only left click
+    if (e.target.closest(".panzoom-toolbar, .lightbox-toolbar")) return;
     isDragging = true;
-    viewport.classList.add("dragging");
+    hasDragged = false;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
     startX = e.clientX - translateX;
     startY = e.clientY - translateY;
+    viewport.classList.add("dragging");
   });
 
   window.addEventListener("mousemove", (e) => {
     if (!isDragging) return;
+    const moveDist = Math.hypot(e.clientX - dragStartX, e.clientY - dragStartY);
+    if (moveDist > DRAG_THRESHOLD) {
+      hasDragged = true;
+    }
     translateX = e.clientX - startX;
     translateY = e.clientY - startY;
     updateTransform(false);
@@ -185,6 +197,9 @@ function initPanZoomLightbox() {
     if (isDragging) {
       isDragging = false;
       viewport.classList.remove("dragging");
+      setTimeout(() => {
+        hasDragged = false;
+      }, 50);
     }
   });
 
@@ -206,6 +221,9 @@ function initPanZoomLightbox() {
   viewport.addEventListener("touchstart", (e) => {
     if (e.touches.length === 1) {
       isDragging = true;
+      hasDragged = false;
+      dragStartX = e.touches[0].clientX;
+      dragStartY = e.touches[0].clientY;
       startX = e.touches[0].clientX - translateX;
       startY = e.touches[0].clientY - translateY;
     } else if (e.touches.length === 2) {
@@ -219,6 +237,10 @@ function initPanZoomLightbox() {
 
   viewport.addEventListener("touchmove", (e) => {
     if (e.touches.length === 1 && isDragging) {
+      const moveDist = Math.hypot(e.touches[0].clientX - dragStartX, e.touches[0].clientY - dragStartY);
+      if (moveDist > DRAG_THRESHOLD) {
+        hasDragged = true;
+      }
       translateX = e.touches[0].clientX - startX;
       translateY = e.touches[0].clientY - startY;
       updateTransform(false);
@@ -236,6 +258,9 @@ function initPanZoomLightbox() {
   viewport.addEventListener("touchend", () => {
     isDragging = false;
     lastPinchDist = null;
+    setTimeout(() => {
+      hasDragged = false;
+    }, 50);
   });
 
   // Toolbar Actions
@@ -254,7 +279,11 @@ function initPanZoomLightbox() {
 
   // Close on Backdrop Click
   viewport.addEventListener("click", (e) => {
-    if (e.target === viewport && !isDragging) {
+    if (hasDragged) {
+      e.stopPropagation();
+      return;
+    }
+    if (e.target === viewport) {
       closeModal();
     }
   });
