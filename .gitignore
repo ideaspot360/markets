@@ -1,7 +1,15 @@
+# Python artifacts
+*.py
+*.pyc
+__pycache__/
+.pytest_cache/
+
+# Internal audits and data
+*.json
+
+# Jekyll & OS artifacts
 .sass-cache/
 .jekyll-cache/
 _site/
-.pytest_cache/
-__pycache__/
-*.pyc
 .DS_Store
+Thumbs.db
