@@ -1,0 +1,28 @@
+<nav class="breadcrumbs-container" aria-label="Breadcrumb Navigation">
+  <ol class="breadcrumbs-list">
+    <li class="breadcrumb-item"><a href="{{ '/' | relative_url }}">Home</a></li>
+    {% if page.category %}
+      <li class="breadcrumb-separator">/</li>
+      <li class="breadcrumb-item">
+        {% assign cat_slug = "macro" %}
+        {% if page.category == "Macro Intelligence" %}
+          {% assign cat_slug = "macro" %}
+        {% endif %}
+        {% if page.category == "Market Structure & Technicals" %}
+          {% assign cat_slug = "technicals" %}
+        {% endif %}
+        {% if page.category == "Options & Systematic Income" %}
+          {% assign cat_slug = "options-income" %}
+        {% endif %}
+        {% if page.category == "Equities & Factor Research" %}
+          {% assign cat_slug = "equities" %}
+        {% endif %}
+        <a href="{{ '/category/' | append: cat_slug | append: '/' | relative_url }}">
+          {{ page.category }}
+        </a>
+      </li>
+    {% endif %}
+    <li class="breadcrumb-separator">/</li>
+    <li class="breadcrumb-item active" aria-current="page">{{ page.title | truncate: 40 }}</li>
+  </ol>
+</nav>

@@ -1,91 +1,183 @@
 ---
-layout: default
+layout: with_sidebar
 title: "Global Macro & Systematic Equity Intelligence"
 ---
 
-<div class="hero-section" style="margin-bottom: 44px; padding: 36px 0; border-bottom: 1px solid var(--border-color);">
-  <div style="display: inline-block; background: var(--callout-bg); color: var(--primary-color); border: 1px solid var(--callout-border); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; margin-bottom: 16px;">
+<div class="hero-section" style="margin-bottom: 32px; padding: 24px 0; border-bottom: 1px solid var(--border-color);">
+  <div style="display: inline-block; background: var(--callout-bg); color: var(--primary-color); border: 1px solid var(--callout-border); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; margin-bottom: 12px;">
     INSTITUTIONAL QUANTITATIVE RESEARCH
   </div>
-  <h1 style="font-size: 2.6rem; font-weight: 800; line-height: 1.25; margin: 0 0 16px 0; letter-spacing: -0.02em;">
+  <h1 style="font-size: 2.3rem; font-weight: 800; line-height: 1.25; margin: 0 0 12px 0; letter-spacing: -0.02em;">
     Market Context 360
   </h1>
-  <p style="font-size: 1.15rem; color: var(--text-muted); max-width: 720px; line-height: 1.6; margin: 0 0 24px 0;">
-    Central bank liquidity regimes, equity risk premium dynamics, balance sheet mechanics, and rigorous empirical investment frameworks for global capital allocators.
+  <p style="font-size: 1.05rem; color: var(--text-muted); max-width: 720px; line-height: 1.6; margin: 0 0 16px 0;">
+    Central bank liquidity regimes, options dealer positioning (GEX), systematic derivative harvesting, and empirical factor analytics for institutional capital allocators.
   </p>
+</div>
 
-  <!-- Core Research Pillars (Focus Areas) with Dynamic Post Count Badges -->
-  {% assign macro_count = site.posts | where: "category", "Macro Intelligence" | size %}
-  {% assign technicals_count_1 = site.posts | where: "category", "Market Structure & Technicals" | size %}
-  {% assign technicals_count_2 = site.posts | where: "category", "Quantitative Frameworks" | size %}
-  {% assign technicals_count = technicals_count_1 | plus: technicals_count_2 %}
-  {% assign options_count_1 = site.posts | where: "category", "Options & Systematic Income" | size %}
-  {% assign options_count_2 = site.posts | where: "category", "Options & Income" | size %}
-  {% assign options_count = options_count_1 | plus: options_count_2 %}
-  {% assign equities_count_1 = site.posts | where: "category", "Equities & Factor Research" | size %}
-  {% assign equities_count_2 = site.posts | where: "category", "US Systematic Equity" | size %}
-  {% assign equities_count = equities_count_1 | plus: equities_count_2 %}
-
-  <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
-    <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 4px;">Focus Areas:</span>
-    <a href="{{ '/category/macro/' | relative_url }}" class="pillar-chip">
-      🌐 Macro Intelligence
-      <span class="chip-count{% if macro_count > 0 %} active{% endif %}">{{ macro_count }}</span>
-    </a>
-    <a href="{{ '/category/technicals/' | relative_url }}" class="pillar-chip">
-      📊 Market Structure &amp; Technicals
-      <span class="chip-count{% if technicals_count > 0 %} active{% endif %}">{{ technicals_count }}</span>
-    </a>
-    <a href="{{ '/category/options-income/' | relative_url }}" class="pillar-chip">
-      ⚡ Options &amp; Systematic Income
-      <span class="chip-count{% if options_count > 0 %} active{% endif %}">{{ options_count }}</span>
-    </a>
-    <a href="{{ '/category/equities/' | relative_url }}" class="pillar-chip">
-      📈 Equities &amp; Factor Research
-      <span class="chip-count{% if equities_count > 0 %} active{% endif %}">{{ equities_count }}</span>
-    </a>
+<!-- [Tier 1] Featured Institutional Research Showcase -->
+{% assign featured_post = site.posts.first %}
+{% if featured_post %}
+<section class="featured-hero-section" style="margin-bottom: 36px;">
+  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+    <h2 style="font-size: 1.15rem; font-weight: 700; color: var(--text-color); margin: 0; display: flex; align-items: center; gap: 8px;">
+      <span>🏛️</span> Featured Institutional Research
+    </h2>
+    <span style="font-size: 0.78rem; color: var(--accent-color); font-weight: 600; background: var(--accent-light); padding: 3px 8px; border-radius: 4px;">KEY REPORT</span>
   </div>
-</div>
-
-<div class="posts-list">
-  <h2 style="font-size: 1.25rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 24px;">
-    Latest Research Publications
-  </h2>
-
-  {% for post in site.posts %}
-  <article class="post-card" style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 24px 28px; margin-bottom: 20px; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;">
-    <div style="display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">
-      <time datetime="{{ post.date | date_to_xmlschema }}">📅 {{ post.date | date: "%B %d, %Y" }}</time>
+  <a href="{{ featured_post.url | relative_url }}" class="post-card featured-card" style="display: block; border: 2px solid var(--accent-color); background: var(--card-bg); border-radius: 10px; padding: 24px; text-decoration: none;">
+    <div class="post-meta" style="margin-bottom: 10px; font-size: 0.85rem; color: var(--text-muted);">
+      <time datetime="{{ featured_post.date | date_to_xmlschema }}">📅 {{ featured_post.date | date: "%B %d, %Y" }}</time>
       <span>&bull;</span>
-      <span class="category-badge">{{ post.category | default: "Macro Intelligence" }}</span>
-      {% if post.tags %}
+      <span class="category-badge">{{ featured_post.category | default: "Macro Intelligence" }}</span>
       <span>&bull;</span>
-      <span style="color: var(--text-muted);">#{{ post.tags | first }}</span>
-      {% endif %}
+      <span>✍️ {{ featured_post.author | default: site.author.name }}</span>
+    </div>
+    <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-color); margin: 0 0 10px 0; line-height: 1.35;">{{ featured_post.title }}</h3>
+    <p class="post-excerpt" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0 0 14px 0;">
+      {{ featured_post.summary | default: featured_post.excerpt | strip_html | truncatewords: 32 }}
+    </p>
+    <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 12px;">
+      <span style="font-size: 0.85rem; color: var(--text-muted);">Pan &amp; Zoom Engine 100%~600% Supported</span>
+      <span style="color: var(--accent-color); font-weight: 700; font-size: 0.88rem;">Read Full Publication →</span>
+    </div>
+  </a>
+</section>
+{% endif %}
+
+<!-- [Tier 2] Institutional 4-Pillars Showcase -->
+<section style="margin-bottom: 40px;">
+  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+    <h2 style="font-size: 1.15rem; font-weight: 700; color: var(--text-color); margin: 0;">
+      📊 Institutional Research Pillars
+    </h2>
+    <span style="font-size: 0.82rem; color: var(--text-muted);">Explore via Left Sticky Sidebar</span>
+  </div>
+
+  <div class="category-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+    <!-- Pillar 1: Macro -->
+    <div class="category-showcase-box" style="border: 1px solid var(--border-color); background: var(--card-bg); border-radius: 8px; padding: 18px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0;">🌐 Macro Intelligence</h3>
+        <a href="{{ '/category/macro/' | relative_url }}" style="font-size: 0.78rem; color: var(--accent-color); text-decoration: none; font-weight: 600;">View All →</a>
+      </div>
+      <p style="font-size: 0.84rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
+        Fed Net Liquidity, TGA cash drains, Reverse Repo depletion, and yield curve shifts.
+      </p>
+      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+        {% assign macro_posts = site.posts | where: "category", "Macro Intelligence" %}
+        {% for p in macro_posts limit:2 %}
+        <li style="font-size: 0.84rem;">
+          <a href="{{ p.url | relative_url }}" style="color: var(--text-color); text-decoration: none; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+            • {{ p.title }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
 
-    <h3 style="margin: 0 0 10px 0; font-size: 1.4rem; font-weight: 700;">
-      <a href="{{ post.url | relative_url }}" style="color: var(--text-color); text-decoration: none;">
-        {{ post.title }}
-      </a>
-    </h3>
-
-    {% if post.summary %}
-    <p style="color: var(--text-muted); font-size: 0.98rem; margin: 0 0 16px 0; line-height: 1.6;">
-      {{ post.summary }}
-    </p>
-    {% else %}
-    <p style="color: var(--text-muted); font-size: 0.98rem; margin: 0 0 16px 0; line-height: 1.6;">
-      {{ post.excerpt | strip_html | truncatewords: 30 }}
-    </p>
-    {% endif %}
-
-    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 14px; margin-top: 14px;">
-      <span style="font-size: 0.85rem; color: var(--text-muted);">✍️ {{ post.author | default: site.author.name }}</span>
-      <a href="{{ post.url | relative_url }}" style="color: var(--primary-color); font-weight: 600; font-size: 0.9rem; text-decoration: none;">
-        Read Full Publication &rarr;
-      </a>
+    <!-- Pillar 2: Technicals -->
+    <div class="category-showcase-box" style="border: 1px solid var(--border-color); background: var(--card-bg); border-radius: 8px; padding: 18px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0;">📐 Market Structure &amp; Technicals</h3>
+        <a href="{{ '/category/technicals/' | relative_url }}" style="font-size: 0.78rem; color: var(--accent-color); text-decoration: none; font-weight: 600;">View All →</a>
+      </div>
+      <p style="font-size: 0.84rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
+        Options dealer gamma exposure (GEX), volatility triggers, and institutional order flow.
+      </p>
+      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+        {% assign tech_posts = site.posts | where: "category", "Market Structure & Technicals" %}
+        {% for p in tech_posts limit:2 %}
+        <li style="font-size: 0.84rem;">
+          <a href="{{ p.url | relative_url }}" style="color: var(--text-color); text-decoration: none; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+            • {{ p.title }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
-  </article>
-  {% endfor %}
-</div>
+
+    <!-- Pillar 3: Options & Income -->
+    <div class="category-showcase-box" style="border: 1px solid var(--border-color); background: var(--card-bg); border-radius: 8px; padding: 18px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0;">⚡ Options &amp; Systematic Income</h3>
+        <a href="{{ '/category/options-income/' | relative_url }}" style="font-size: 0.78rem; color: var(--accent-color); text-decoration: none; font-weight: 600;">View All →</a>
+      </div>
+      <p style="font-size: 0.84rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
+        Systematic covered calls, volatility skew harvesting, and synthetic overlay strategies.
+      </p>
+      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+        {% assign opt_posts = site.posts | where: "category", "Options & Systematic Income" %}
+        {% for p in opt_posts limit:2 %}
+        <li style="font-size: 0.84rem;">
+          <a href="{{ p.url | relative_url }}" style="color: var(--text-color); text-decoration: none; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+            • {{ p.title }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Pillar 4: Equities -->
+    <div class="category-showcase-box" style="border: 1px solid var(--border-color); background: var(--card-bg); border-radius: 8px; padding: 18px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0;">📈 Equities &amp; Factor Research</h3>
+        <a href="{{ '/category/equities/' | relative_url }}" style="font-size: 0.78rem; color: var(--accent-color); text-decoration: none; font-weight: 600;">View All →</a>
+      </div>
+      <p style="font-size: 0.84rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
+        Cross-sectional momentum, balance sheet forensics, and quantitative factor models.
+      </p>
+      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+        {% assign eq_posts = site.posts | where: "category", "Equities & Factor Research" %}
+        {% for p in eq_posts limit:2 %}
+        <li style="font-size: 0.84rem;">
+          <a href="{{ p.url | relative_url }}" style="color: var(--text-color); text-decoration: none; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+            • {{ p.title }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- [Tier 3] Recent Research Ledger -->
+<section style="margin-bottom: 40px;">
+  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+    <h2 style="font-size: 1.15rem; font-weight: 700; color: var(--text-color); margin: 0;">
+      📑 Recent Research Ledger
+    </h2>
+    <span style="font-size: 0.78rem; color: var(--text-muted);">{{ site.posts | size }} Publications Archived</span>
+  </div>
+
+  <div class="ledger-table-container" style="border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; background: var(--card-bg);">
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.86rem; margin: 0;">
+      <thead>
+        <tr style="background: var(--bg-color); border-bottom: 1px solid var(--border-color); text-align: left;">
+          <th style="padding: 10px 14px; font-weight: 600; width: 120px;">Date</th>
+          <th style="padding: 10px 14px; font-weight: 600; width: 220px;">Pillar</th>
+          <th style="padding: 10px 14px; font-weight: 600;">Publication Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for post in site.posts limit:10 %}
+        <tr style="border-bottom: 1px solid var(--border-color);">
+          <td style="padding: 10px 14px; color: var(--text-muted); font-variant-numeric: tabular-nums; white-space: nowrap;">
+            {{ post.date | date: "%Y-%m-%d" }}
+          </td>
+          <td style="padding: 10px 14px;">
+            <span class="category-badge" style="font-size: 0.72rem;">
+              {{ post.category }}
+            </span>
+          </td>
+          <td style="padding: 10px 14px;">
+            <a href="{{ post.url | relative_url }}" style="color: var(--text-color); text-decoration: none; font-weight: 500;">
+              {{ post.title }}
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>

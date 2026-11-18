@@ -1,6 +1,8 @@
 ---
-layout: default
+layout: with_sidebar
 ---
+
+{% include breadcrumbs.html %}
 
 <article class="post-content">
   <header class="post-header">
@@ -49,4 +51,6 @@ layout: default
       {{ site.author.bio }}
     </p>
   </div>
+
+  {% include post_nav.html %}
 </article>

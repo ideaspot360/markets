@@ -2,12 +2,17 @@
 <html lang="en">
   {% include head.html %}
   <body>
+    {% include mobile_drawer.html %}
     {% include header.html %}
 
     <main class="site-content">
-      <div class="container">
+      {% if page.no_container or layout.no_container %}
         {{ content }}
-      </div>
+      {% else %}
+        <div class="container">
+          {{ content }}
+        </div>
+      {% endif %}
     </main>
 
     {% include footer.html %}

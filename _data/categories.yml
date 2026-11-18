@@ -1,0 +1,27 @@
+macro:
+  name_en: "Macro Intelligence"
+  slug: "macro"
+  icon: "🌐"
+  description: "Cross-asset liquidity frameworks, Federal Reserve balance sheet mechanics, yield curve dynamics, and macroeconomic regime shifts."
+  exact_category: "Macro Intelligence"
+
+technicals:
+  name_en: "Market Structure & Technicals"
+  slug: "technicals"
+  icon: "📐"
+  description: "Options dealer gamma exposure (GEX), volatility surface positioning, auction theory, liquidity voids, and institutional technical setups."
+  exact_category: "Market Structure & Technicals"
+
+options-income:
+  name_en: "Options & Systematic Income"
+  slug: "options-income"
+  icon: "🔬"
+  description: "Systematic covered call mechanics, variance risk premia harvesting, volatility skew exploitation, and structured derivative income strategies."
+  exact_category: "Options & Systematic Income"
+
+equities:
+  name_en: "Equities & Factor Research"
+  slug: "equities"
+  icon: "📈"
+  description: "Cross-sectional momentum, quantitative factor models, balance sheet forensic analysis, and single-stock fundamental valuations."
+  exact_category: "Equities & Factor Research"

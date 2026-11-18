@@ -1,0 +1,27 @@
+---
+layout: default
+no_container: true
+---
+<!-- Top Market Ticker -->
+{% include market_ticker.html %}
+
+<div class="site-layout-wrapper">
+  <div class="site-layout-grid">
+    <!-- Left Sticky Sidebar -->
+    {% include sidebar.html %}
+
+    <!-- Center Main Column -->
+    <main class="site-main-column" id="main-content" role="main">
+      {% include category_pills.html %}
+      {{ content }}
+    </main>
+
+    <!-- Right Scrollspy TOC -->
+    {% if page.layout == 'post' %}
+      {% include toc.html %}
+    {% else %}
+      <aside class="toc-desktop" id="toc-desktop" style="visibility: hidden;">
+      </aside>
+    {% endif %}
+  </div>
+</div>
