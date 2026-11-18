@@ -1,5 +1,14 @@
 <aside class="sidebar-desktop" id="sidebar-desktop" aria-label="Institutional Research Navigation">
   <div class="sidebar-sticky-inner">
+    <!-- Quick Search Box -->
+    <div class="sidebar-search-box">
+      <div class="search-input-wrap">
+        <input type="text" id="sidebar-search-input" class="sidebar-search-input" placeholder="🔍 Search ticker, factor, macro..." aria-label="Search research">
+        <button type="button" id="sidebar-search-clear" class="search-clear-btn" aria-label="Clear search" style="display: none;">✕</button>
+      </div>
+    </div>
+
+    <!-- Main Navigation Tree -->
     <div class="sidebar-nav-header">
       <span class="nav-title">🏛️ RESEARCH PILLARS</span>
     </div>
@@ -34,5 +43,43 @@
         {% endif %}
       {% endfor %}
     </nav>
+
+    <!-- Special Tracks -->
+    {% if site.data.navigation.special_tracks %}
+    <div class="sidebar-nav-header" style="margin-top: 10px;">
+      <span class="nav-title">⚡ SPECIAL TRACKS</span>
+    </div>
+    <div class="special-tracks-list">
+      {% for track in site.data.navigation.special_tracks %}
+        <a href="{{ '/' | relative_url }}#search={{ track.query | url_encode }}" class="track-item" data-track="{{ track.query }}">
+          <span class="track-title">{{ track.title }}</span>
+        </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Network Links -->
+    {% if site.data.navigation.network %}
+    <div class="sidebar-nav-header" style="margin-top: 14px;">
+      <span class="nav-title">🌐 NETWORK</span>
+    </div>
+    <div class="sidebar-network-links">
+      {% for net in site.data.navigation.network %}
+        <a href="{{ net.url }}" class="network-link{% if net.is_kr %} nav-external-kr{% elsif net.is_us %} nav-external-us{% endif %}" target="_blank" rel="noopener">
+          {% if net.badge %}
+            <span class="edition-pill{% if net.is_us %} edition-pill-us{% endif %}">{{ net.badge }}</span>
+          {% endif %}
+          <span class="network-link-text">{{ net.title }}</span>
+          <span class="external-icon">↗</span>
+        </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Institutional Brand Box -->
+    <div class="sidebar-official-box">
+      <div class="official-title">Market Context 360</div>
+      <div class="official-sub">Quantitative Macro &amp; Derivatives Intelligence</div>
+    </div>
   </div>
 </aside>

@@ -24,10 +24,13 @@ permalink: /category/equities/
   </div>
 </div>
 
-<div class="posts-list">
-  <h2 style="font-size: 1.15rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 20px;">
-    Equities &amp; Factor Research Publications
-  </h2>
+<div class="posts-list" id="category-post-list">
+  <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+    <h2 style="font-size: 1.15rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0;">
+      Equities &amp; Factor Research Publications
+    </h2>
+    {% include view_toolbar.html %}
+  </div>
 
   {% assign count = 0 %}
   {% for post in site.posts %}

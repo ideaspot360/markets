@@ -33,3 +33,23 @@ main_menu:
       - title: "Platform Manifesto"
         slug: "manifesto"
         url: "/2026/11/16/welcome-to-market-context-360-manifesto.html"
+
+special_tracks:
+  - title: "🏛️ Fed Net Liquidity Regimes"
+    query: "Liquidity"
+  - title: "⚡ Zero Gamma & Volatility"
+    query: "Gamma"
+  - title: "📈 Systematic Income Overlays"
+    query: "Income"
+
+network:
+  - title: "Dev Notes"
+    url: "https://dev.ideaspot360.com"
+  - title: "Alpha Context"
+    url: "https://stock.ideaspot360.com"
+    badge: "KR"
+    is_kr: true
+  - title: "Gear Studio"
+    url: "https://gear.ideaspot360.com"
+  - title: "Softwin IT"
+    url: "https://softwin.tistory.com"
