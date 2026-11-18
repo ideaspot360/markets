@@ -170,16 +170,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 8. Sidebar Scroll Position Restoration
+  // Responsive resize: Auto close drawer and restore scroll on desktop viewports
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 1200 && drawer && drawer.classList.contains("is-open")) {
+      closeDrawer();
+    }
+  });
+
+  // 8. Sidebar Scroll Position Restoration (Private Mode Safe)
   const sidebar = document.querySelector(".sidebar-desktop");
   if (sidebar) {
-    const savedPos = sessionStorage.getItem("sidebar_scroll_pos");
-    if (savedPos !== null) {
-      sidebar.scrollTop = parseInt(savedPos, 10);
-    }
-    sidebar.addEventListener("scroll", () => {
-      sessionStorage.setItem("sidebar_scroll_pos", sidebar.scrollTop.toString());
-    }, { passive: true });
+    try {
+      const savedPos = sessionStorage.getItem("sidebar_scroll_pos");
+      if (savedPos !== null) {
+        sidebar.scrollTop = parseInt(savedPos, 10);
+      }
+      sidebar.addEventListener("scroll", () => {
+        try {
+          sessionStorage.setItem("sidebar_scroll_pos", sidebar.scrollTop.toString());
+        } catch (e) {}
+      }, { passive: true });
+    } catch (e) {}
   }
 
   // 9. Category Pills Horizontal Scroll (Active Pill Center Alignment)

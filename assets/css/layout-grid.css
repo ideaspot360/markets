@@ -171,6 +171,14 @@
   width: 100%;
 }
 
+/* Prevent sticky header occlusion on anchor jump */
+.site-main-column h2,
+.site-main-column h3,
+.site-main-column h4,
+.site-main-column [id] {
+  scroll-margin-top: calc(var(--top-nav-offset) + 24px);
+}
+
 /* Breadcrumbs */
 .breadcrumbs-container {
   margin-bottom: 20px;
