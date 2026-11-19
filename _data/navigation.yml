@@ -41,15 +41,3 @@ special_tracks:
     query: "Gamma"
   - title: "📈 Systematic Income Overlays"
     query: "Income"
-
-network:
-  - title: "Dev Notes"
-    url: "https://dev.ideaspot360.com"
-  - title: "Alpha Context"
-    url: "https://stock.ideaspot360.com"
-    badge: "KR"
-    is_kr: true
-  - title: "Gear Studio"
-    url: "https://gear.ideaspot360.com"
-  - title: "Softwin IT"
-    url: "https://softwin.tistory.com"
