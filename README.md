@@ -32,10 +32,10 @@ All macro time-series diagrams, Fed dot plots, and financial statement matrices 
 
 Every publication must map **1:1 exclusively** to exactly one of the 4 research pillars (or Platform Manifesto):
 
-1. **`Macro Intelligence`** (`/category/macro/`): Fed Net Liquidity, Treasury General Account (TGA), Reverse Repo Facility (RRP), sovereign yield curves, and global central bank balance sheets.
-2. **`US Systematic Equity`** (`/category/equities/`): Megacap hyperscalers, structural Free Cash Flow (FCF) yields, AI infrastructure CapEx returns, and valuation multiple compression analysis.
-3. **`Options & Income`** (`/category/options-income/`): Covered call ETFs (JEPI, JEPQ, 0DTE), volatility term structures, option writing yield mechanics, and downside asymmetric risk models.
-4. **`Quantitative Frameworks`** (`/category/quant/`): Quantitative asset allocation, factor rotation, PineScript execution algorithms, and systematic risk management.
+1. **`Options & Systematic Income`** (`/category/options-income/`): Systematic covered call mechanics, variance risk premia harvesting, volatility skew exploitation, and structured derivative income strategies (JEPI, JEPQ, SPYI, 0DTE).
+2. **`Macro Intelligence`** (`/category/macro/`): Fed Net Liquidity, Treasury General Account (TGA), Reverse Repo Facility (RRP), sovereign yield curves, and macroeconomic regime shifts.
+3. **`Market Structure & Technicals`** (`/category/technicals/`): Options dealer gamma exposure (GEX), volatility surface positioning, auction theory, liquidity voids, and institutional technical setups.
+4. **`Equities & Factor Research`** (`/category/equities/`): Cross-sectional momentum, quantitative factor models, balance sheet forensics, and single-stock fundamental valuations.
 
 *(Note: `Platform Manifesto` is reserved exclusively for platform announcements and is strictly isolated from research pillars.)*
 

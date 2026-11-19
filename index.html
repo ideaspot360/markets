@@ -55,7 +55,28 @@ title: "Global Macro & Systematic Equity Intelligence"
   </div>
 
   <div class="category-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
-    <!-- Pillar 1: Macro -->
+    <!-- Pillar 1: Options & Income -->
+    <div class="category-showcase-box" style="border: 1px solid var(--border-color); background: var(--card-bg); border-radius: 8px; padding: 18px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0;">⚡ Options &amp; Systematic Income</h3>
+        <a href="{{ '/category/options-income/' | relative_url }}" style="font-size: 0.78rem; color: var(--accent-color); text-decoration: none; font-weight: 600;">View All →</a>
+      </div>
+      <p style="font-size: 0.84rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
+        Systematic covered calls, volatility skew harvesting, and synthetic overlay strategies.
+      </p>
+      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+        {% assign opt_posts = site.posts | where: "category", "Options & Systematic Income" %}
+        {% for p in opt_posts limit:2 %}
+        <li style="font-size: 0.84rem;">
+          <a href="{{ p.url | relative_url }}" style="color: var(--text-color); text-decoration: none; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+            • {{ p.title }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Pillar 2: Macro -->
     <div class="category-showcase-box" style="border: 1px solid var(--border-color); background: var(--card-bg); border-radius: 8px; padding: 18px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
         <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0;">🌐 Macro Intelligence</h3>
@@ -76,7 +97,7 @@ title: "Global Macro & Systematic Equity Intelligence"
       </ul>
     </div>
 
-    <!-- Pillar 2: Technicals -->
+    <!-- Pillar 3: Technicals -->
     <div class="category-showcase-box" style="border: 1px solid var(--border-color); background: var(--card-bg); border-radius: 8px; padding: 18px;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
         <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0;">📐 Market Structure &amp; Technicals</h3>
@@ -88,27 +109,6 @@ title: "Global Macro & Systematic Equity Intelligence"
       <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
         {% assign tech_posts = site.posts | where: "category", "Market Structure & Technicals" %}
         {% for p in tech_posts limit:2 %}
-        <li style="font-size: 0.84rem;">
-          <a href="{{ p.url | relative_url }}" style="color: var(--text-color); text-decoration: none; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-            • {{ p.title }}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-
-    <!-- Pillar 3: Options & Income -->
-    <div class="category-showcase-box" style="border: 1px solid var(--border-color); background: var(--card-bg); border-radius: 8px; padding: 18px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-        <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0;">⚡ Options &amp; Systematic Income</h3>
-        <a href="{{ '/category/options-income/' | relative_url }}" style="font-size: 0.78rem; color: var(--accent-color); text-decoration: none; font-weight: 600;">View All →</a>
-      </div>
-      <p style="font-size: 0.84rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
-        Systematic covered calls, volatility skew harvesting, and synthetic overlay strategies.
-      </p>
-      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
-        {% assign opt_posts = site.posts | where: "category", "Options & Systematic Income" %}
-        {% for p in opt_posts limit:2 %}
         <li style="font-size: 0.84rem;">
           <a href="{{ p.url | relative_url }}" style="color: var(--text-color); text-decoration: none; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
             • {{ p.title }}

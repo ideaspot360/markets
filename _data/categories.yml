@@ -1,3 +1,10 @@
+options-income:
+  name_en: "Options & Systematic Income"
+  slug: "options-income"
+  icon: "🔬"
+  description: "Systematic covered call mechanics, variance risk premia harvesting, volatility skew exploitation, and structured derivative income strategies."
+  exact_category: "Options & Systematic Income"
+
 macro:
   name_en: "Macro Intelligence"
   slug: "macro"
@@ -11,13 +18,6 @@ technicals:
   icon: "📐"
   description: "Options dealer gamma exposure (GEX), volatility surface positioning, auction theory, liquidity voids, and institutional technical setups."
   exact_category: "Market Structure & Technicals"
-
-options-income:
-  name_en: "Options & Systematic Income"
-  slug: "options-income"
-  icon: "🔬"
-  description: "Systematic covered call mechanics, variance risk premia harvesting, volatility skew exploitation, and structured derivative income strategies."
-  exact_category: "Options & Systematic Income"
 
 equities:
   name_en: "Equities & Factor Research"

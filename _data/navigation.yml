@@ -7,6 +7,10 @@ main_menu:
     title: "Institutional Research"
     icon: "📊"
     children:
+      - title: "Options & Systematic Income"
+        slug: "options-income"
+        url: "/category/options-income/"
+        badge: "Options"
       - title: "Macro Intelligence"
         slug: "macro"
         url: "/category/macro/"
@@ -15,10 +19,6 @@ main_menu:
         slug: "technicals"
         url: "/category/technicals/"
         badge: "Technicals"
-      - title: "Options & Systematic Income"
-        slug: "options-income"
-        url: "/category/options-income/"
-        badge: "Options"
       - title: "Equities & Factor Research"
         slug: "equities"
         url: "/category/equities/"
@@ -35,9 +35,9 @@ main_menu:
         url: "/2026/11/16/welcome-to-market-context-360-manifesto.html"
 
 special_tracks:
+  - title: "📈 Systematic Income Overlays"
+    query: "Income"
   - title: "🏛️ Fed Net Liquidity Regimes"
     query: "Liquidity"
   - title: "⚡ Zero Gamma & Volatility"
     query: "Gamma"
-  - title: "📈 Systematic Income Overlays"
-    query: "Income"
