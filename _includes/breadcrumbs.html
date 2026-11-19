@@ -4,15 +4,15 @@
     {% if page.category %}
       <li class="breadcrumb-separator">/</li>
       <li class="breadcrumb-item">
-        {% assign cat_slug = "macro" %}
+        {% assign cat_slug = "options-income" %}
+        {% if page.category == "Options & Systematic Income" %}
+          {% assign cat_slug = "options-income" %}
+        {% endif %}
         {% if page.category == "Macro Intelligence" %}
           {% assign cat_slug = "macro" %}
         {% endif %}
         {% if page.category == "Market Structure & Technicals" %}
           {% assign cat_slug = "technicals" %}
-        {% endif %}
-        {% if page.category == "Options & Systematic Income" %}
-          {% assign cat_slug = "options-income" %}
         {% endif %}
         {% if page.category == "Equities & Factor Research" %}
           {% assign cat_slug = "equities" %}

@@ -21,16 +21,16 @@ permalink: /about/
     <h2>2. Core Analytical Pillars</h2>
     <ul>
       <li>
-        <strong>Central Bank Balance Sheet Mechanics</strong>: Empirical monitoring of Federal Reserve Net Liquidity (Total Assets &minus; TGA &minus; Reverse Repo Facility), ECB balance sheet contraction, and Bank of Japan yield curve adjustments.
+        <strong>Options &amp; Systematic Income Mechanics</strong>: Empirical backtesting of covered call overlays (JEPI, JEPQ, SPYI), variance risk premia harvesting, volatility skew exploitation, and structured derivative income strategies.
       </li>
       <li>
-        <strong>Equity Risk Premium (ERP) Regimes</strong>: Quantitative tracking of spread differentials between S&amp;P 500 earnings yields and 10-year US Treasury real yields (TIPS).
+        <strong>Central Bank Balance Sheet Mechanics</strong>: Empirical monitoring of Federal Reserve Net Liquidity (Total Assets &minus; TGA &minus; Reverse Repo Facility), sovereign yield curve shifts, and macroeconomic regime changes.
       </li>
       <li>
-        <strong>Sector Capital Expenditure &amp; Free Cash Flow Quality</strong>: Bottom-up fundamental validation of Big Tech hyperscalers (AI CapEx efficiency, unit economics, ROIC vs WACC spreads).
+        <strong>Market Structure &amp; Technical Order Flow</strong>: Options dealer gamma exposure (GEX/DEX), Cumulative Volume Delta (CVD), auction theory, and liquidity void analysis.
       </li>
       <li>
-        <strong>Cross-Asset Volatility &amp; Liquidity Stresses</strong>: VIX term structure, SOFR-Treasury spreads, MOVE index, and high-yield credit default swaps (CDS).
+        <strong>Equities &amp; Factor Research Quality</strong>: Quantitative factor models, Big Tech AI CapEx productivity, and structural Free Cash Flow (FCF) yield spreads.
       </li>
     </ul>
 

@@ -43,33 +43,33 @@ Our ongoing research publications are organized across four interconnected disci
     |                   |                         |                    |
     v                   v                         v                    v
 [ PILLAR 1 ]        [ PILLAR 2 ]              [ PILLAR 3 ]         [ PILLAR 4 ]
-Macro               US Systematic             Options &            Quantitative
-Intelligence        Equity Research           Volatility           Frameworks
+Options &           Macro                     Market Structure &   Equities &
+Systematic Income   Intelligence              Technicals           Factor Research
 -----------------   -----------------------   ------------------   ------------------
-Fed Net Liquidity   Megacap FCF Quality       0DTE Order Flow      Factor Rotation
-TGA / RRP Drains    AI CapEx ROIC Spreads     VIX Term Structure   Systematic Algos
-Real Yield Regimes  Multiple Compression      Synthetic Yield      PineScript Models
+Covered Call ETFs   Fed Net Liquidity         0DTE Order Flow      Factor Rotation
+0DTE Yield Models   TGA / RRP Drains          Gamma Exposure (GEX) FCF Quality Spreads
+Variance Harvesting Real Yield Regimes        Liquidity Voids      Multiple Analytics
 ```
 
-### Pillar 1: Macro Intelligence
+### Pillar 1: Options & Systematic Income
+* **Systematic Covered Call Mechanics**: Empirical backtesting of Wall Street option-income vehicles (JEPI, JEPQ, SPYI, 0DTE), option overwriting yield structures, and synthetic dividend sustainability.
+* **Volatility Skew & Variance Harvesting**: Exploiting volatility risk premia, implied vs realized volatility spreads, and downside tail-risk hedging overlays.
+* **Capital Preservation & NAV Dynamics**: Rigorous mathematical modeling of reverse compounding drag, NAV erosion risks, and upside participation ceilings.
+
+### Pillar 2: Macro Intelligence
 * **Central Bank Liquidity Regimes**: Continuous tracking of Federal Reserve Net Liquidity, European Central Bank (ECB) balance sheet normalization, and Bank of Japan (BOJ) yield curve dynamics.
 * **Sovereign Yield Curves & Term Premia**: Deep analysis of US Treasury issuance profiles, Quarterly Refinancing Announcements (QRA), and real yield transmission to global borrowing costs.
 * **Inflation Dynamics & Currency Flows**: Empirical monitoring of money supply velocity, commodity supply-chain bottlenecks, and foreign exchange reserve realignments.
 
-### Pillar 2: US Systematic Equity Research
+### Pillar 3: Market Structure & Technicals
+* **0DTE & Gamma Exposure**: Analyzing how zero-days-to-expiration option volumes influence intraday market liquidity, dealer hedging flows, and volatility spikes.
+* **Price Action & Microstructure**: Evaluating order flow imbalances, Cumulative Volume Delta (CVD), volume-weighted execution dynamics, and auction market theory.
+* **Cross-Asset Volatility Surfaces**: Decoupling implied volatility surfaces across the VIX curve and dealer positioning to anticipate regime transitions.
+
+### Pillar 4: Equities & Factor Research
 * **Cash Flow Quality & Capital Allocation**: Rigorous decompilation of enterprise free cash flows, share repurchases, and organic debt servicing capacities.
 * **Capital Expenditure Efficiency**: Evaluating hyperscaler AI infrastructure investments by tracking incremental ROIC against institutional hurdle rates.
-* **Equity Risk Premium (ERP) Analytics**: Measuring the relative attractiveness of equities against risk-free cash and investment-grade corporate credit.
-
-### Pillar 3: Options, Derivatives & Volatility
-* **0DTE & Gamma Exposure**: Analyzing how zero-days-to-expiration option volumes influence intraday market liquidity, dealer hedging flows, and volatility spikes.
-* **Synthetic Income & Yield Strategies**: Empirical backtesting of covered call overlays, option-income structures, and risk-managed cash-flow generation models.
-* **Volatility Term Structure**: Decoupling implied volatility surfaces across the VIX curve to anticipate regime transitions and tail-risk events.
-
-### Pillar 4: Quantitative Frameworks & Algorithmic Trading
-* **Price Action & Microstructure**: Evaluating order flow imbalances, moving average pullback probabilities, and volume-weighted execution dynamics.
-* **Systematic Factor Modeling**: Multi-factor momentum, value, and quality rotational frameworks codified for algorithmic deployment.
-* **Open-Source Strategy Verification**: Providing verifiable logic, reproducible backtest data, and algorithmic scripts for quantitative traders.
+* **Quantitative Factor Models**: Cross-sectional momentum, balance sheet forensics, and single-stock fundamental valuations.
 
 ---
 
