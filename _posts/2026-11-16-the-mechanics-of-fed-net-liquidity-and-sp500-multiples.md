@@ -1,11 +1,29 @@
 ---
+layout: post
 title: "The Mechanics of Fed Net Liquidity: Why S&P 500 Multiples Face a Structural Ceiling"
 date: 2026-11-16 11:30:00 +0900
 category: "Macro Intelligence"
+categories: ["Macro Intelligence"]
 tags: [FederalReserve, NetLiquidity, SP500, ReverseRepo, TreasuryGeneralAccount, EquityRiskPremium, QuantitativeMacro]
-author: "Market Context Research"
+author: "Market Context 360 Quantitative Research Team"
 summary: "An empirical deconstruction of Federal Reserve balance sheet runoff, the exhaustion of the Overnight Reverse Repo (ON RRP) buffer, and why the compression of the Equity Risk Premium places a mathematical ceiling on S&P 500 multiple expansion."
-layout: post
+excerpt: "An empirical deconstruction of Federal Reserve balance sheet runoff, the exhaustion of the Overnight Reverse Repo (ON RRP) buffer, and why the compression of the Equity Risk Premium places a mathematical ceiling on S&P 500 multiple expansion."
+platform: markets
+slug: the-mechanics-of-fed-net-liquidity-and-sp500-multiples
+status: PUBLISHED
+verification_date: "2026-11-23"
+sources:
+  - "https://fred.stlouisfed.org (Federal Reserve Bank of St. Louis FRED - WALCL, WTREGEN, RRPONTSYD, DFII10)"
+  - "https://www.federalreserve.gov (Federal Reserve Board of Governors - Statistical Release H.4.1 Factors Affecting Reserve Balances)"
+  - "https://home.treasury.gov (U.S. Department of the Treasury - Daily Treasury Statement & Cash Operations)"
+  - "https://www.sec.gov/edgar (U.S. Securities and Exchange Commission EDGAR - Form 10-K/10-Q Financial Reporting Disclosures)"
+  - "https://www.spglobal.com/spdji (S&P Dow Jones Indices - S&P 500 Multiples and Valuation Metrics)"
+fact_check_sources:
+  - "https://fred.stlouisfed.org/series/WALCL (Federal Reserve Total Assets - Less Eliminations from Consolidation)"
+  - "https://fred.stlouisfed.org/series/WTREGEN (U.S. Treasury General Account - Weekly Level)"
+  - "https://fred.stlouisfed.org/series/RRPONTSYD (Overnight Reverse Repurchase Agreements - Total Securities Sold By Fed)"
+  - "https://fred.stlouisfed.org/series/DFII10 (Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity, Quoted on an Investment Basis, Inflation-Indexed)"
+  - "https://www.federalreserve.gov/releases/h41 (Federal Reserve Statistical Release H.4.1: Factors Affecting Reserve Balances)"
 ---
 
 In macroeconomic theory, market narrative frequently tracks asset price, but asset price over medium horizons remains anchored to systemic dollar liquidity.
@@ -127,7 +145,26 @@ Third, capital discipline dictates a shift toward organic Free Cash Flow product
 
 ---
 
-<div class="post-disclaimer">
+## 📚 References & Authoritative Sources
+
+> Source: Federal Reserve Board of Governors, Federal Reserve Bank of St. Louis (FRED), U.S. Department of the Treasury, U.S. Securities and Exchange Commission (SEC), S&P Dow Jones Indices
+
+* [Federal Reserve Bank of St. Louis (FRED)](https://fred.stlouisfed.org): Federal Reserve Total Assets (WALCL), Treasury General Account (WTREGEN), Overnight Reverse Repurchase Agreements (RRPONTSYD), 10-Year Real TIPS Yield (DFII10).
+* [Federal Reserve Board](https://www.federalreserve.gov): Statistical Release H.4.1 (Factors Affecting Reserve Balances of Depository Institutions and Condition Statement of Federal Reserve Banks).
+* [U.S. Department of the Treasury](https://home.treasury.gov): Daily Treasury Statement (TGA Cash and Debt Operations of the United States Treasury).
+* [U.S. Securities and Exchange Commission (SEC)](https://www.sec.gov/edgar): EDGAR Corporate Filings and Form 10-K/10-Q Financial Disclosure Guidelines.
+* [S&P Dow Jones Indices](https://www.spglobal.com/spdji): S&P 500 Index Earnings and Valuation Multiples Historical Statistics.
+
+---
+
+## Legal & Regulatory Compliance Disclaimer
+
+> **SEC / FINRA Legal Disclaimer**:  
+> This publication is strictly for informational, educational, and research purposes and does not constitute financial, investment, legal, or tax advice. No statement herein should be construed as an offer to sell, a solicitation of an offer to buy, or a recommendation for any security, portfolio, or strategy. Past performance is no guarantee of future results. All investments involve risk, including the possible loss of principal. Quantitative models, valuation multiples, and macroeconomic frameworks are subject to market volatility and estimation errors. Investors must conduct independent due diligence and consult a qualified, licensed financial advisor before making any investment decision.
+
+---
+
+<div class="legal-disclaimer post-disclaimer">
   <strong>Regulatory Compliance &amp; Legal Disclaimer:</strong><br>
-  <em>Market Context 360 is an independent financial research publication providing impersonal macroeconomic, quantitative, and technical analysis for educational purposes only. The information presented herein does not constitute individualized investment advice, financial planning, or a recommendation or solicitation to buy, sell, or hold any security, commodity, or investment product. Market Context 360 is not a Registered Investment Adviser (RIA), broker-dealer, or fiduciary under the U.S. Investment Advisers Act of 1940 or FINRA regulations. Historical backtests, quantitative frameworks, and empirical models are hypothetical, educational, and subject to substantial market risks, including the potential loss of principal. Readers must exercise independent judgment and consult with a licensed, fiduciary financial advisor before executing any capital allocation decisions.</em>
+  <em>Market Context 360 is an independent financial research publication providing impersonal macroeconomic, quantitative, and technical analysis for educational purposes only. The information presented herein does not constitute individualized investment advice, financial planning, or a recommendation or solicitation to buy, sell, or hold any security, commodity, or investment product. Market Context 360 is not a Registered Investment Adviser (RIA), broker-dealer, or fiduciary under the U.S. Investment Advisers Act of 1940 or FINRA regulations. Historical valuations, discounted cash flow frameworks, sensitivity models, and empirical analyses are hypothetical, educational, and subject to substantial market risks, including the potential risk of loss of principal. Readers must exercise independent judgment and consult with a licensed, fiduciary financial advisor before executing any capital allocation decisions.</em>
 </div>

@@ -7,7 +7,25 @@ platform: markets
 category: Options & Systematic Income
 categories: ["Options & Systematic Income"]
 tags: ["CoveredCall", "SystematicIncome", "JEPQ", "QQQI", "GPIQ", "QYLD", "QQQ", "QuantitativeResearch", "OptionsStrategy", "Backtest"]
+author: "Market Context Research Team"
+summary: "An empirical 1-year quantitative head-to-head backtest of the four flagship Nasdaq-100 covered call ETF structures—JEPQ, QQQI, GPIQ, and QYLD—against benchmark Invesco QQQ Trust (QQQ), evaluating capital appreciation, distribution compounding, and reverse compounding drag."
+excerpt: "An empirical 1-year quantitative head-to-head backtest of the four flagship Nasdaq-100 covered call ETF structures—JEPQ, QQQI, GPIQ, and QYLD—against benchmark Invesco QQQ Trust (QQQ), evaluating capital appreciation, distribution compounding, and reverse compounding drag."
 slug: us-global_group02-covered-call-options
+verification_date: "2026-11-24"
+sources:
+  - "https://www.sec.gov/edgar (U.S. Securities and Exchange Commission - Form N-PORT & Statutory Prospectuses for JEPQ, QQQI, GPIQ, QYLD, QQQ)"
+  - "https://www.cboe.com (Chicago Board Options Exchange - Cboe Nasdaq-100 BuyWrite Index BXN & NDX Option Contract Specifications)"
+  - "https://am.jpmorgan.com (JPMorgan Asset Management - JEPQ Fund Holdings, Distribution Schedule, and ELN Disclosures)"
+  - "https://neosfunds.com (NEOS Investments - QQQI Section 1256 Option Spread Mechanics & Distribution Data)"
+  - "https://www.gsam.com (Goldman Sachs Asset Management - GPIQ Dynamic Flex Option Overwrite Methodology)"
+  - "https://www.globalxetfs.com (Global X ETFs - QYLD Covered Call Index Replication Data)"
+fact_check_sources:
+  - "https://www.sec.gov/edgar/browse/?CIK=0001804196 (JPMorgan Exchange-Traded Fund Trust - JEPQ SEC Filings)"
+  - "https://www.sec.gov/edgar/browse/?CIK=0001844512 (NEOS ETF Trust - QQQI SEC Filings)"
+  - "https://www.sec.gov/edgar/browse/?CIK=0001479010 (Goldman Sachs ETF Trust - GPIQ SEC Filings)"
+  - "https://www.sec.gov/edgar/browse/?CIK=0001432353 (Global X Funds - QYLD SEC Filings)"
+  - "https://www.sec.gov/edgar/browse/?CIK=0001067839 (Invesco QQQ Trust, Series 1 - QQQ SEC Filings)"
+  - "https://www.cboe.com/indices/data/bxn/ (Cboe Nasdaq-100 BuyWrite Index Historical Data & Methodology)"
 ---
 
 The Nasdaq-100 has historically served as Wall Street's premier engine of equity capital appreciation, driven by the structural dominance of megacap technology leaders. However, the relentless surge in institutional demand for cash flow has fueled an unprecedented expansion in tech-oriented systematic income strategies. Today, the Nasdaq-100 covered call landscape represents approximately $70 billion in cumulative assets under management (AUM), offering nominal distribution yields ranging from 9% to upwards of 15%.
@@ -46,6 +64,7 @@ To establish an institutional-grade assessment, we evaluate performance using sy
 In the Hold scenario, distributions are collected as uninvested cash, mirroring the experience of income-focused investors who utilize distributions for operational liquidity.
 
 ![Nasdaq-100 Covered Call Showdown: 1Y Empirical Performance](/assets/images/posts/us_group02_nasdaq_covered_call_comparison.png)
+*Figure 1: 1-Year Empirical Performance Comparison (Cash Distribution Hold Scenario: Initial $10,000 Capital). Click the chart to activate the interactive Pan & Zoom inspection stage (100% to 500% magnification).*
 
 > 💡 **Hold Analysis Key Insight**: During a choppy, sideways market where the Nasdaq-100 benchmark (QQQ) generated +3.64% total return with a deep -19.82% maximum drawdown, systematic overwrite strategies demonstrated superior risk mitigation. **GPIQ** led the cohort with a **+5.02%** total return, followed by **QYLD (+4.58%)**, outperforming the raw benchmark while cutting maximum portfolio drawdowns by 3.5% to 7.3% percentage points.
 
@@ -64,6 +83,7 @@ In the Hold scenario, distributions are collected as uninvested cash, mirroring 
 In the Reinvestment scenario, all distributions are fully reinvested on each ex-dividend date at the closing NAV price, compounding the share count across the 1-year cycle. Benchmark QQQ is also synchronized on a total return (TR) compounding basis.
 
 ![Nasdaq-100 Covered Call Reinvested TR: 1Y Compounding](/assets/images/posts/us_group02_nasdaq_reinvest_comparison.png)
+*Figure 2: 1-Year Compounding Empirical Performance (Full Distribution Reinvestment TR Scenario: Initial $10,000 Capital). Symmetrical dividend reinvestment applied to all vehicles and benchmark QQQ. Click the chart to activate interactive Pan & Zoom.*
 
 > 💡 **Reinvest Analysis Key Insight**: Full distribution reinvestment during a volatile, oscillating market regime caused an observable performance drag across all covered call strategies relative to the Hold scenario.
 
@@ -71,9 +91,9 @@ In the Reinvestment scenario, all distributions are fully reinvested on each ex-
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **GPIQ** (Goldman Sachs Core) | $10,000 | $10,412.84 | **+4.13%** | +4.13% | -17.77% | 0.31 | **-0.90%p** |
 | **QYLD** (Global X BuyWrite) | $10,000 | $10,395.17 | **+3.95%** | +3.95% | **-13.98%** | 0.33 | **-0.63%p** |
-| <strong style="color: #F59E0B;">Invesco QQQ Trust (QQQ Benchmark TR)</strong> | $10,000 | $10,359.45 | **+3.59%** | +3.59% | **-19.90%** | 0.27 | **-0.04%p** |
 | **JEPQ** (JPMorgan Equity Premium) | $10,000 | $10,172.86 | **+1.73%** | +1.73% | -16.23% | 0.19 | **-1.03%p** |
 | **QQQI** (NEOS High Income) | $10,000 | $10,102.90 | **+1.03%** | +1.03% | -17.64% | 0.15 | **-1.34%p** |
+| <strong style="color: #F59E0B;">Invesco QQQ Trust (QQQ Benchmark TR)</strong> | $10,000 | $10,359.45 | **+3.59%** | +3.59% | **-19.90%** | 0.27 | **-0.04%p** |
 
 ---
 
@@ -131,6 +151,24 @@ Based on 1-year empirical evidence across varying market states:
 
 ---
 
+*Market Context 360 publishes weekly empirical research on systematic derivatives strategies, quantitative asset allocation, and exchange-traded fund architectures.*
+
+---
+
+## 📚 References & Regulatory Disclosures
+
+> Source: U.S. Securities and Exchange Commission (SEC), Chicago Board Options Exchange (Cboe), JPMorgan Asset Management, NEOS Investments, Goldman Sachs Asset Management, Global X ETFs, Financial Industry Regulatory Authority (FINRA)
+
+* [U.S. Securities and Exchange Commission (SEC)](https://www.sec.gov/edgar): Form N-PORT, Form N-CSR, and Statutory Prospectuses for JEPQ (CIK: 0001804196), QQQI (CIK: 0001844512), GPIQ (CIK: 0001479010), QYLD (CIK: 0001432353), and Invesco QQQ Trust (CIK: 0001067839).
+* [Chicago Board Options Exchange (Cboe)](https://www.cboe.com): Cboe Nasdaq-100 BuyWrite Index (BXN) Benchmark Methodology, NDX Options Contract Specifications, and Volatility Index (VXN) Historical Metrics.
+* [JPMorgan Asset Management](https://am.jpmorgan.com): JPMorgan Nasdaq Equity Premium Income ETF (JEPQ) Distribution History, Equity-Linked Note (ELN) Counterparty Credit Risk Disclosures, and Portfolio Holdings.
+* [NEOS Investments](https://neosfunds.com): NEOS Nasdaq 100 High Income ETF (QQQI) Section 1256 Tax Treatment, Call Spread Collar Mechanics, and Monthly Distribution History.
+* [Goldman Sachs Asset Management](https://www.gsam.com): Goldman Sachs Nasdaq-100 Core Premium Income ETF (GPIQ) Dynamic Flex Overwrite Framework and Rules-Based Volatility Scaling Rules.
+* [Global X ETFs](https://www.globalxetfs.com): Global X Nasdaq 100 Covered Call ETF (QYLD) Summary Prospectus and Cboe BXN Passive Replication Mechanics.
+* [Financial Industry Regulatory Authority (FINRA)](https://www.finra.org): FINRA Rule 2210 Communications with the Public Regarding Options and Structured Derivatives.
+
+---
+
 ## Legal & Regulatory Compliance Disclaimer
 
 > **SEC / FINRA Legal Disclaimer**:  
@@ -138,7 +176,7 @@ Based on 1-year empirical evidence across varying market states:
 
 ---
 
-<div class="post-disclaimer">
+<div class="legal-disclaimer post-disclaimer">
   <strong>Regulatory Compliance &amp; Legal Disclaimer:</strong><br>
   <em>Market Context 360 is an independent financial research publication providing impersonal macroeconomic, quantitative, and technical analysis for educational purposes only. The information presented herein does not constitute individualized investment advice, financial planning, or a recommendation or solicitation to buy, sell, or hold any security, commodity, or investment product. Market Context 360 is not a Registered Investment Adviser (RIA), broker-dealer, or fiduciary under the U.S. Investment Advisers Act of 1940 or FINRA regulations. Historical backtests, quantitative frameworks, and empirical models are hypothetical, educational, and subject to substantial market risks, including the potential loss of principal. Readers must exercise independent judgment and consult with a licensed, fiduciary financial advisor before executing any capital allocation decisions.</em>
 </div>

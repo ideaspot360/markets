@@ -8,6 +8,22 @@ category: Options & Systematic Income
 categories: ["Options & Systematic Income"]
 tags: ["CoveredCall", "SystematicIncome", "DIVO", "KNG", "BALI", "QDVO", "SCHD", "SPY", "DividendGrowth", "Backtest"]
 slug: us-global_group03-covered-call-options
+author: Market Context 360 Quantitative Research Team
+summary: "Empirical 1-year performance deconstruction of U.S. dividend-growth covered call ETFs across Hold and Reinvest total return frameworks: DIVO, KNG, BALI, and QDVO versus benchmark SCHD and SPY."
+excerpt: "Empirical 1-year performance deconstruction of U.S. dividend-growth covered call ETFs across Hold and Reinvest total return frameworks: DIVO, KNG, BALI, and QDVO versus benchmark SCHD and SPY."
+verification_date: "2026-11-24"
+sources:
+  - "https://www.sec.gov/edgar (U.S. Securities and Exchange Commission EDGAR - DIVO, KNG, BALI, QDVO Prospectuses & Semi-Annual Reports)"
+  - "https://amplifyetfs.com (Amplify ETFs - DIVO & QDVO Fund Holdings and Option Distribution Ledgers)"
+  - "https://www.ftportfolios.com (First Trust - KNG S&P 500 Dividend Aristocrats Target Income Specifications)"
+  - "https://www.ishares.com (BlackRock iShares - BALI Active Premium Income Structure & Cboe Index Overwrite)"
+  - "https://www.cboe.com (Chicago Board Options Exchange - Cboe BuyWrite & Target Income Index Methodologies)"
+fact_check_sources:
+  - "https://www.sec.gov/edgar (U.S. Securities and Exchange Commission EDGAR - DIVO, KNG, BALI, QDVO Prospectuses & Semi-Annual Reports)"
+  - "https://amplifyetfs.com (Amplify ETFs - DIVO & QDVO Fund Holdings and Option Distribution Ledgers)"
+  - "https://www.ftportfolios.com (First Trust - KNG S&P 500 Dividend Aristocrats Target Income Specifications)"
+  - "https://www.ishares.com (BlackRock iShares - BALI Active Premium Income Structure & Cboe Index Overwrite)"
+  - "https://www.cboe.com (Chicago Board Options Exchange - Cboe BuyWrite & Target Income Index Methodologies)"
 ---
 
 The search for durable cash flow in equity markets often creates a direct conflict between capital growth and immediate distribution yield. Traditional covered call strategies written against broad indices—such as mechanical 100% at-the-money (ATM) programs—frequently sacrifice substantial equity upside during bull regimes, capping long-term portfolio wealth in exchange for static option premium. In response to this structural limitation, a sophisticated sub-asset class has emerged: **dividend growth and tactical active covered call ETFs**.
@@ -19,6 +35,8 @@ In this quantitative research study, we evaluate the four flagship tactical divi
 ---
 
 ## 1. Specification & Architectural Overview
+
+> Source: SEC EDGAR Filings, Amplify ETFs, First Trust Portfolios, BlackRock iShares, and Cboe Global Markets
 
 Although all four vehicles target high-quality equity exposure combined with option cash flow, their underlying architectures diverge significantly in equity selection, option overwrite intensity, and portfolio coverage flexibility.
 
@@ -40,6 +58,8 @@ Although all four vehicles target high-quality equity exposure combined with opt
 
 ## 2. 1-Year Empirical Performance Comparison (Charts & Summary Table)
 
+> Source: Synchronized Daily Pricing & Cash Distribution Ledgers (Nov 21, 2025 – Nov 20, 2026, 251 Sessions)
+
 To establish an institutional-grade assessment, we evaluate performance using synchronized daily close prices and verified cash distribution ledgers from November 21, 2025 to November 20, 2026 (251 trading sessions). We evaluate two synchronized scenarios with an identical initial investment of $10,000.
 
 ### ① [Set 1: Hold] Empirical Performance: Price Change + Cash Distributions
@@ -51,7 +71,7 @@ In the Hold scenario, distributions are collected as uninvested cash, reflecting
 > 💡 **Hold Analysis Key Insight**: High-quality dividend stocks exhibited significant structural strength during the 2025–2026 cycle. **KNG** delivered the highest total return among all four covered call strategies at **+14.21%**, driven by a +4.78% price appreciation combined with $942.52 (9.43%) in cash distributions. **BALI** followed with **+9.03%** total return, and **DIVO** delivered **+5.73%**. All three conservative dividend-overlay strategies matched or exceeded the broad market S&P 500 benchmark (SPY, +5.82%) while generating 5x to 8x the cash yield. Concurrently, the pure equity dividend growth benchmark **SCHD** generated a standout **+29.13%** return, illustrating the trade-off between uncapped equity compounding and option yield capture.
 
 | Strategy / Vehicle | Initial Capital<br>($) | Final Equity Value<br>($) | Pure Price Return<br>(%) | Cash Distributions<br>($) | Final Total Wealth<br>($) | Cumulative Total Return<br>(%) | Realized Yield<br>(%) | Max Drawdown<br>(MDD, %) | Sharpe Ratio<br>(Annualized) |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **KNG** (FT Cboe Vest Aristocrats) | $10,000 | $10,478.34 | +4.78% | $942.52 | $11,420.86 | **+14.21%** | 9.43% | **-8.38%** | 1.20 |
 | **BALI** (iShares Large Cap Income) | $10,000 | $10,045.13 | +0.45% | $857.51 | $10,902.64 | **+9.03%** | 8.58% | **-9.49%** | 0.81 |
 | **DIVO** (Amplify CWP Enhanced Div) | $10,000 | $9,892.04 | -1.08% | $680.61 | $10,572.65 | **+5.73%** | 6.81% | **-8.47%** | 0.61 |
@@ -137,6 +157,18 @@ Based on empirical evidence across the 2025–2026 cycle:
 
 ---
 
+## 📚 References & Authoritative Sources
+
+> Source: U.S. Securities and Exchange Commission (SEC) EDGAR, Amplify ETFs, First Trust Portfolios, BlackRock iShares, Cboe Global Markets
+
+* [U.S. Securities and Exchange Commission (SEC) EDGAR](https://www.sec.gov/edgar): DIVO, KNG, BALI, and QDVO Registration Statements, Prospectuses, and Semi-Annual Fund Disclosures.
+* [Amplify ETFs](https://amplifyetfs.com): Amplify CWP Enhanced Dividend Income ETF (DIVO) & Amplify CWP Growth & Income ETF (QDVO) Distribution History and Portfolio Strategy.
+* [First Trust Portfolios](https://www.ftportfolios.com): FT Cboe Vest S&P 500 Dividend Aristocrats Target Income ETF (KNG) Fact Sheet, Index Methodology, and Distribution Reports.
+* [BlackRock iShares](https://www.ishares.com): iShares U.S. Large Cap Premium Income Active ETF (BALI) Prospectus, Active Management Strategy, and Monthly Distribution Ledgers.
+* [Cboe Global Markets](https://www.cboe.com): Cboe S&P 500 Dividend Aristocrats Target Income Index Methodology and Option BuyWrite Research.
+
+---
+
 ## Legal & Regulatory Compliance Disclaimer
 
 > **SEC / FINRA Legal Disclaimer**:  
@@ -144,7 +176,7 @@ Based on empirical evidence across the 2025–2026 cycle:
 
 ---
 
-<div class="post-disclaimer">
+<div class="legal-disclaimer post-disclaimer">
   <strong>Regulatory Compliance &amp; Legal Disclaimer:</strong><br>
   <em>Market Context 360 is an independent financial research publication providing impersonal macroeconomic, quantitative, and technical analysis for educational purposes only. The information presented herein does not constitute individualized investment advice, financial planning, or a recommendation or solicitation to buy, sell, or hold any security, commodity, or investment product. Market Context 360 is not a Registered Investment Adviser (RIA), broker-dealer, or fiduciary under the U.S. Investment Advisers Act of 1940 or FINRA regulations. Historical backtests, quantitative frameworks, and empirical models are hypothetical, educational, and subject to substantial market risks, including the potential loss of principal. Readers must exercise independent judgment and consult with a licensed, fiduciary financial advisor before executing any capital allocation decisions.</em>
 </div>

@@ -1,11 +1,30 @@
 ---
+layout: post
 title: "[November 2026] S&P 500 Covered Call Showdown: JEPI vs SPYI vs GPIX vs XYLD — Did Tactical Overwrite Beat the Index?"
 date: 2026-11-19 09:00:00 +0900
 category: "Options & Systematic Income"
+categories: ["Options & Systematic Income"]
 tags: [CoveredCall, SystematicIncome, JEPI, SPYI, GPIX, XYLD, SPY, QuantitativeResearch, OptionsStrategy, Backtest]
-author: "Market Context Research"
+author: "Market Context Research Team"
 summary: "An empirical 1-year quantitative head-to-head backtest of the four dominant S&P 500 covered call ETF structures—JEPI, SPYI, GPIX, and XYLD—against the benchmark SPDR S&P 500 ETF Trust (SPY), evaluating capital appreciation, distribution reinvestment compounding, and reverse compounding drag."
-layout: post
+excerpt: "An empirical 1-year quantitative head-to-head backtest of the four dominant S&P 500 covered call ETF structures—JEPI, SPYI, GPIX, and XYLD—against the benchmark SPDR S&P 500 ETF Trust (SPY), evaluating capital appreciation, distribution reinvestment compounding, and reverse compounding drag."
+platform: markets
+slug: sp500-covered-call-etf-showdown-jepi-spyi-gpix-xyld
+status: PUBLISHED
+verification_date: "2026-11-23"
+sources:
+  - "https://www.sec.gov/edgar (U.S. Securities and Exchange Commission - Form N-PORT & Prospectuses for JEPI, SPYI, GPIX, XYLD, SPY)"
+  - "https://www.cboe.com (Chicago Board Options Exchange - Cboe S&P 500 BuyWrite Index BXM & SPX Option Contract Specifications)"
+  - "https://am.jpmorgan.com (JPMorgan Asset Management - JEPI Fund Holdings, Distribution Schedule, and ELN Disclosures)"
+  - "https://neosfunds.com (NEOS Investments - SPYI Section 1256 Option Spread Mechanics & Distribution Data)"
+  - "https://www.gsam.com (Goldman Sachs Asset Management - GPIX Dynamic Flex Option Overwrite Methodology)"
+  - "https://www.globalxetfs.com (Global X ETFs - XYLD Covered Call Index Replication Data)"
+fact_check_sources:
+  - "https://www.sec.gov/edgar/browse/?CIK=0001804196 (JPMorgan Exchange-Traded Fund Trust - JEPI SEC Filings)"
+  - "https://www.sec.gov/edgar/browse/?CIK=0001844512 (NEOS ETF Trust - SPYI SEC Filings)"
+  - "https://www.sec.gov/edgar/browse/?CIK=0001479010 (Goldman Sachs ETF Trust - GPIX SEC Filings)"
+  - "https://www.sec.gov/edgar/browse/?CIK=0001432353 (Global X Funds - XYLD SEC Filings)"
+  - "https://www.cboe.com/indices/data/bxm/ (Cboe S&P 500 BuyWrite Index Historical Data & Methodology)"
 ---
 
 The derivative-enhanced income landscape has experienced an unprecedented structural transformation over the past three years. Within the United States exchange-traded fund ecosystem, the S&P 500 covered call segment alone now commands more than **$68 billion in aggregate assets under management (AUM)**. For institutional allocators and self-directed income investors, the fundamental question is no longer whether to generate systematic income via option overwrites, but rather which structural engineering methodology delivers optimal risk-adjusted cash flow without inducing permanent capital erosion.
@@ -186,7 +205,32 @@ For wealth managers, family offices, and individual income allocators, the empir
 
 ---
 
-<div class="post-disclaimer">
+*Market Context 360 publishes weekly empirical research on systematic derivatives strategies, quantitative asset allocation, and exchange-traded fund architectures.*
+
+---
+
+## 📚 References & Regulatory Disclosures
+
+> Source: U.S. Securities and Exchange Commission (SEC), Chicago Board Options Exchange (Cboe), JPMorgan Asset Management, NEOS Investments, Goldman Sachs Asset Management, Global X ETFs, Financial Industry Regulatory Authority (FINRA)
+
+* [U.S. Securities and Exchange Commission (SEC)](https://www.sec.gov/edgar): Form N-PORT, Form N-CSR, and Statutory Prospectuses for JEPI (CIK: 0001804196), SPYI (CIK: 0001844512), GPIX (CIK: 0001479010), XYLD (CIK: 0001432353), and SPY (CIK: 0000884394).
+* [Chicago Board Options Exchange (Cboe)](https://www.cboe.com): Cboe S&P 500 BuyWrite Index (BXM) Benchmark Methodology, SPX Options Contract Specifications, and Volatility Index (VIX) Historical Metrics.
+* [JPMorgan Asset Management](https://am.jpmorgan.com): JPMorgan Equity Premium Income ETF (JEPI) Annualized Distributions, Equity-Linked Note (ELN) Counterparty Credit Risk Disclosures, and Portfolio Holdings.
+* [NEOS Investments](https://neosfunds.com): NEOS S&P 500 High Income ETF (SPYI) Section 1256 Tax Treatment, Call Spread Collar Mechanics, and Monthly Distribution History.
+* [Goldman Sachs Asset Management](https://www.gsam.com): Goldman Sachs S&P 500 Core Premium Income ETF (GPIX) Dynamic Flex Overwrite Framework and Rules-Based Volatility Scaling Rules.
+* [Global X ETFs](https://www.globalxetfs.com): Global X S&P 500 Covered Call ETF (XYLD) Summary Prospectus and Cboe BXM Passive Replication Mechanics.
+* [Financial Industry Regulatory Authority (FINRA)](https://www.finra.org): FINRA Rule 2210 Communications with the Public Regarding Options and Structured Derivatives.
+
+---
+
+## Legal & Regulatory Compliance Disclaimer
+
+> **SEC / FINRA Legal Disclaimer**:  
+> This publication is strictly for informational, educational, and research purposes and does not constitute financial, investment, legal, or tax advice. No statement herein should be construed as an offer to sell, a solicitation of an offer to buy, or a recommendation for any security, portfolio, or strategy. Past performance is no guarantee of future results. All investments involve risk, including the possible loss of principal. Quantitative models, covered call backtests, and derivative frameworks are hypothetical, educational, and subject to substantial market volatility and estimation errors. Investors must conduct independent due diligence and consult a qualified, licensed financial advisor before making any investment decision.
+
+---
+
+<div class="legal-disclaimer post-disclaimer">
   <strong>Regulatory Compliance &amp; Legal Disclaimer:</strong><br>
   <em>Market Context 360 is an independent financial research publication providing impersonal macroeconomic, quantitative, and technical analysis for educational purposes only. The information presented herein does not constitute individualized investment advice, financial planning, or a recommendation or solicitation to buy, sell, or hold any security, commodity, or investment product. Market Context 360 is not a Registered Investment Adviser (RIA), broker-dealer, or fiduciary under the U.S. Investment Advisers Act of 1940 or FINRA regulations. Historical backtests, quantitative frameworks, and empirical models are hypothetical, educational, and subject to substantial market risks, including the potential loss of principal. Readers must exercise independent judgment and consult with a licensed, fiduciary financial advisor before executing any capital allocation decisions.</em>
 </div>

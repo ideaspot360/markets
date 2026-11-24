@@ -10,6 +10,20 @@ tags: ["Macro", "TreasuryYield", "EquityValuation", "SP500", "DiscountRate", "Eq
 slug: 10-year-treasury-yield-and-equity-valuation-transmission
 author: Market Context 360 Quantitative Research Team
 summary: Empirical deconstruction of the 10-Year U.S. Treasury yield transmission channels to S&P 500 valuation multiples across discount rates, ERP compression, and equity duration sensitivity.
+excerpt: Empirical deconstruction of the 10-Year U.S. Treasury yield transmission channels to S&P 500 valuation multiples across discount rates, ERP compression, and equity duration sensitivity.
+verification_date: "2026-11-24"
+sources:
+  - "https://fred.stlouisfed.org (Federal Reserve Bank of St. Louis FRED - DGS10, TB3MS, SP500, DFII10)"
+  - "https://home.treasury.gov (U.S. Department of the Treasury - Daily Treasury Par Yield Curve Rates)"
+  - "https://www.federalreserve.gov (Federal Reserve Board of Governors - Monetary Policy & Balance Sheet Statistics)"
+  - "https://www.spglobal.com/spdji (S&P Dow Jones Indices - S&P 500 Forward P/E and Historical Valuation Ratios)"
+  - "https://www.sec.gov/edgar (U.S. Securities and Exchange Commission EDGAR - Corporate 10-K Debt Structure Disclosures)"
+fact_check_sources:
+  - "https://fred.stlouisfed.org/series/DGS10 (Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity)"
+  - "https://fred.stlouisfed.org/series/TB3MS (3-Month Treasury Bill Secondary Market Rate)"
+  - "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve (U.S. Treasury Daily Yield Curve Rates)"
+  - "https://www.spglobal.com/spdji/en/indices/equity/sp-500 (S&P 500 Index Earnings and Multiple Fundamentals)"
+  - "https://www.federalreserve.gov/releases/z1/ (Federal Reserve Financial Accounts of the United States - Z.1 Release)"
 ---
 
 Across modern capital markets, the 10-Year U.S. Treasury note represents the foundational risk-free discount rate against which all financial assets are priced. Over the past four decades, institutional allocators grew accustomed to a structural secular decline in sovereign bond yields, which culminated in the Zero Interest Rate Policy (ZIRP) era. During that multi-year regime, nominal 10-year yields below 2.0% justified equity valuation multiples expanding well beyond historical norms.
@@ -23,6 +37,8 @@ In this research report, we examine the quantitative architecture governing the 
 ---
 
 ## 1. The Three Mechanical Transmission Channels
+
+> Source: Federal Reserve Board of Governors, U.S. Department of the Treasury, and S&P Dow Jones Indices
 
 The causal transmission from rising benchmark Treasury yields to equity valuation operates through three distinct structural channels: discount rate mathematics, asset allocation arbitrage, and corporate cost of capital.
 
@@ -127,6 +143,8 @@ The infographic below illustrates the multi-layered transmission framework, conn
 
 ## 3. Empirical Sensitivity Matrix: Yield Regimes vs. Multiple Ceilings
 
+> Source: U.S. Department of the Treasury Daily Par Yield Curve Rates & S&P 500 Valuation Historical Series
+
 To understand the mathematical boundaries governing equity pricing, we analyze a deterministic valuation sensitivity matrix. The model holds 2026 consensus normalized S&P 500 earnings per share at $275.00, evaluating theoretical fair value multiples across varying 10-Year Treasury yield environments and target risk premiums.
 
 | 10Y UST Yield ($Y_{10Y}$) | Target ERP Spread | Required Earnings Yield ($E/P$) | Implied Fair P/E Multiple | Theoretical S&P 500 Index Level | Valuation Deviation vs. Current (21.8x) | Macro Regime Classification |
@@ -204,6 +222,18 @@ In a macroeconomic regime characterized by 4.40% to 4.75% 10-Year Treasury yield
 
 ---
 
+## 📚 References & Authoritative Sources
+
+> Source: Federal Reserve Board of Governors, Federal Reserve Bank of St. Louis (FRED), U.S. Department of the Treasury, S&P Dow Jones Indices, U.S. Securities and Exchange Commission (SEC)
+
+* [Federal Reserve Bank of St. Louis (FRED)](https://fred.stlouisfed.org): 10-Year Treasury Constant Maturity Rate (DGS10), 3-Month Treasury Bill Rate (TB3MS), 10-Year Real TIPS Yield (DFII10).
+* [U.S. Department of the Treasury](https://home.treasury.gov): Daily Treasury Par Yield Curve Rates, Monthly Statement of the Public Debt, and Debt Issuance Schedules.
+* [S&P Dow Jones Indices](https://www.spglobal.com/spdji): S&P 500 Forward Operating Earnings, Valuation Multiples, and Historical Multiple Statistics.
+* [Federal Reserve Board](https://www.federalreserve.gov): Financial Accounts of the United States (Z.1) and Monetary Policy Report.
+* [U.S. Securities and Exchange Commission (SEC)](https://www.sec.gov/edgar): Corporate Form 10-K/10-Q Disclosures on Weighted Average Cost of Debt and Refinancing Schedules.
+
+---
+
 ## Legal & Regulatory Compliance Disclaimer
 
 > **SEC / FINRA Legal Disclaimer**:  
@@ -211,7 +241,7 @@ In a macroeconomic regime characterized by 4.40% to 4.75% 10-Year Treasury yield
 
 ---
 
-<div class="post-disclaimer">
+<div class="legal-disclaimer post-disclaimer">
   <strong>Regulatory Compliance &amp; Legal Disclaimer:</strong><br>
   <em>Market Context 360 is an independent financial research publication providing impersonal macroeconomic, quantitative, and technical analysis for educational purposes only. The information presented herein does not constitute individualized investment advice, financial planning, or a recommendation or solicitation to buy, sell, or hold any security, commodity, or investment product. Market Context 360 is not a Registered Investment Adviser (RIA), broker-dealer, or fiduciary under the U.S. Investment Advisers Act of 1940 or FINRA regulations. Historical valuations, discounted cash flow frameworks, sensitivity models, and empirical analyses are hypothetical, educational, and subject to substantial market risks, including the potential risk of loss of principal. Readers must exercise independent judgment and consult with a licensed, fiduciary financial advisor before executing any capital allocation decisions.</em>
 </div>
