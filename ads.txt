@@ -1,0 +1,11 @@
+---
+layout: null
+permalink: /ads.txt
+sitemap: false
+---
+{%- if site.google_adsense_client and site.google_adsense_client != "" -%}
+google.com, {{ site.google_adsense_client | remove: "ca-" }}, DIRECT, f08c47fec0942fa0
+{%- else -%}
+# Google AdSense ads.txt (Placeholder until real Publisher ID is configured in _config.yml)
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+{%- endif -%}
